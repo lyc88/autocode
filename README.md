@@ -48,7 +48,7 @@ public class UserController{
      /**
       *  新增
       */
-     @RequestMapping("user/findById")
+     @RequestMapping("user/add")
      public CommonResult<User> add(User user){
         Boolean success = userService.save(user);
         return new CommonResultResponse<Boolean>().ok(success);
