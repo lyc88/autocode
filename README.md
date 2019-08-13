@@ -4,8 +4,8 @@
 本项目基于springboot，freemarker 模板渲染 ，mybatisplus， 简单 快速，避免加班加点。
 
 代码质量有待优化，毕竟半天写完。
-改一下数据库连接,直接运行测试类就行。 例子：
-
+改一下数据库连接,直接运行测试类就行 生成代码 在 test 目录下面 很容易就看到了。 例子：
+```
 /**
 * 用户名
 *
@@ -54,3 +54,4 @@ public class UserController{
         return new CommonResultResponse<Boolean>().ok(success);
      }
 }
+```
