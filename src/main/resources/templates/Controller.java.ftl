@@ -50,7 +50,7 @@ public class ${table.className}Controller{
      /**
       *  新增
       */
-     @RequestMapping("${table.attrName}/findById")
+     @RequestMapping("${table.attrName}/add")
      public CommonResult<${table.className}> add(${table.className} ${table.attrName}){
         Boolean success = ${table.attrName}Service.save(${table.attrName});
         return new CommonResultResponse<Boolean>().ok(success);
