@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.bean.ColumnEntity;
 import com.example.demo.bean.TableEntity;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface MysqlMapper {
     TableEntity queryTable(String tableName);
 
     List<ColumnEntity> queryColumns(String tableName);
+
+
 }

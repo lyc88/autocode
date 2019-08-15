@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.mapper.MysqlMapper;
 import com.example.demo.service.MysqlAutoService;
 import freemarker.template.TemplateException;
 import org.junit.Test;
@@ -16,10 +17,12 @@ public class AutocodeApplicationTests {
 
 	@Autowired
 	private MysqlAutoService mysqlAutoService;
+
+
 	@Test
 	public void contextLoads() throws IOException, TemplateException {
 
-			mysqlAutoService.autoCode();
+			mysqlAutoService.autoCode("user");
 
 	}
 

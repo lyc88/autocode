@@ -8,6 +8,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,7 +31,10 @@ public class MysqlAutoService {
     @Autowired
     Configuration configuration;
 
-    @Value("${parentPath:./src/main/java/com/example/demo/test}")
+    @Value("${packPathName:com/example/demo/test}")
+    private String packPathName ;
+
+    @Value("${parentPath:./src/main/java/}")
     private String parentPath;
 
     @Value("${entityPath:/entity/}")
@@ -48,10 +52,19 @@ public class MysqlAutoService {
     @Value("${controllerPath:/controller/}")
     private String controllerPath;
 
-    public void autoCode() throws IOException, TemplateException {
+    @Value("${myBatisXmlPath:/xml/}")
+    private String myBatisXmlPath;
+    @Value("${parentPath:./src/main/resources/mapper}")
+    private String xmlParentPath;
+
+    public void autoCode(String tname) throws IOException, TemplateException {
        List<String> tableNames = new ArrayList<>();
+       HashMap tMap = new HashMap();
+       if(StringUtils.isNotBlank(tname)){
+           tMap.put("tableName",tname);
+       }
        // 获取所有表信息
-       List<Map<String, Object>> list = mysqlMapper.queryList(null);
+       List<Map<String, Object>> list = mysqlMapper.queryList(tMap);
        for (int i = 0; i < list.size(); i++) {
            String tableName = (String) list.get(i).get("tableName");
            tableNames.add(tableName);
@@ -83,6 +96,7 @@ public class MysqlAutoService {
            hashMap.put("Service",configuration.getTemplate("Service.java.ftl"));
            hashMap.put("ServiceImpl",configuration.getTemplate("ServiceImpl.java.ftl"));
            hashMap.put("Controller",configuration.getTemplate("Controller.java.ftl"));
+           hashMap.put("MyBatisXml",configuration.getTemplate("MyBatisXml.java.ftl"));
 
            for (Map.Entry entry:hashMap.entrySet()) {
                Template template = (Template) entry.getValue();
@@ -99,23 +113,28 @@ public class MysqlAutoService {
                //从设置的目录中获得模板
                String result = FreeMarkerTemplateUtils.processTemplateIntoString(template,data);
                if(key.equals("Entity")){
-                   FileUtils.write(new File(parentPath+entityPath+table.getClassName()+".java"),result,"utf-8");
+                   FileUtils.write(new File(parentPath+packPathName+entityPath+table.getClassName()+".java"),result,"utf-8");
                }
 
                if(key.equals("Mapper")){
-                   FileUtils.write(new File(parentPath+mapperPath+table.getClassName()+"Mapper.java"),result,"utf-8");
+                   FileUtils.write(new File(parentPath+packPathName+mapperPath+table.getClassName()+"Mapper.java"),result,"utf-8");
                }
 
                if(key.equals("Service")){
-                   FileUtils.write(new File(parentPath+servicePath+table.getClassName()+"Service.java"),result,"utf-8");
+                   FileUtils.write(new File(parentPath+packPathName+servicePath+table.getClassName()+"Service.java"),result,"utf-8");
                }
 
                if(key.equals("ServiceImpl")){
-                   FileUtils.write(new File(parentPath+serviceImplPath+table.getClassName()+"ServiceImpl.java"),result,"utf-8");
+                   FileUtils.write(new File(parentPath+packPathName+serviceImplPath+table.getClassName()+"ServiceImpl.java"),result,"utf-8");
                }
 
                if(key.equals("Controller")){
-                   FileUtils.write(new File(parentPath+controllerPath+table.getClassName()+"Controller.java"),result,"utf-8");
+                   FileUtils.write(new File(parentPath+packPathName+controllerPath+table.getClassName()+"Controller.java"),result,"utf-8");
+               }
+
+               if(key.equals("MyBatisXml")){
+
+                   FileUtils.write(new File(xmlParentPath+myBatisXmlPath+table.getClassName()+"Mapper.xml"),result,"utf-8");
                }
            }
 
