@@ -31,9 +31,23 @@ public class MysqlAutoService {
     @Autowired
     Configuration configuration;
 
+    /**
+     * ===================================== 基本路径 ====================
+     */
     @Value("${packPathName:com/example/demo/test}")
     private String packPathName ;
 
+    //@Value("${packageName:com.example.demo}")
+    private String packageName ;
+   // @Value("${moduleName:test}")
+    private String moduleName ;
+
+    @Value("${author:lyc}")
+    private String author;
+
+    /**
+     * ===================================== 路径配置 ====================
+     */
     @Value("${parentPath:./src/main/java/}")
     private String parentPath;
 
@@ -98,17 +112,22 @@ public class MysqlAutoService {
            hashMap.put("Controller",configuration.getTemplate("Controller.java.ftl"));
            hashMap.put("MyBatisXml",configuration.getTemplate("MyBatisXml.java.ftl"));
 
+           // 判断 路径是否 配置错误
+           String pack = packPathName.replace("/",".");
+           packageName = pack.substring(0,pack.lastIndexOf("."));
+           moduleName = pack.substring(pack.lastIndexOf(".")+1);
+
            for (Map.Entry entry:hashMap.entrySet()) {
                Template template = (Template) entry.getValue();
                String key = (String) entry.getKey();
                //数据
                Map<String, Object> data = new HashMap<>();
                data.put("table",table);
-               data.put("author","lyc");
+               data.put("author",author);
                data.put("datetime", DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 
-               data.put("package","com.example.demo");
-               data.put("moduleName","test");
+               data.put("package",packageName);
+               data.put("moduleName",moduleName);
                data.put("bigDecimal",1);
                //从设置的目录中获得模板
                String result = FreeMarkerTemplateUtils.processTemplateIntoString(template,data);
