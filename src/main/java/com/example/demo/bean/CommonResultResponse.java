@@ -11,11 +11,19 @@ import lombok.Data;
 @Data
 public class CommonResultResponse<T>{
 
-    public  CommonResult ok(T data){
+    public static <T> CommonResult ok(T data){
        return new CommonResult<T>(200,data,"success");
     }
 
-    public  CommonResult fail(T data){
+    public static <T> CommonResult ok(T data,String msg){
+        return new CommonResult<T>(200,data,msg);
+    }
+
+    public  static <T> CommonResult fail(T data){
         return new CommonResult<T>(500,data,"error");
+    }
+
+    public  static <T> CommonResult fail(T data,String msg){
+        return new CommonResult<T>(500,data,msg);
     }
 }

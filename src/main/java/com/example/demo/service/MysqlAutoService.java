@@ -44,6 +44,11 @@ public class MysqlAutoService {
 
     @Value("${author:lyc}")
     private String author;
+    /**
+     * 是否开启  swagger2
+     */
+    @Value(value = "${swagger.enable:true}")
+    private Boolean swaggerEnable;
 
     /**
      * ===================================== 路径配置 ====================
@@ -123,6 +128,7 @@ public class MysqlAutoService {
                //数据
                Map<String, Object> data = new HashMap<>();
                data.put("table",table);
+               data.put("swaggerEnable",swaggerEnable);
                data.put("author",author);
                data.put("datetime", DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 

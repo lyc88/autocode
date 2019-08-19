@@ -11,7 +11,7 @@ import lombok.Data;
 public class ColumnEntity {
 	//列名
     private String columnName;
-    //列名类型
+    //列名类型 int,varchar
     private String dataType;
     //列名备注
     private String columnComment;
@@ -19,7 +19,12 @@ public class ColumnEntity {
     private String columnKey;
     //自增 auto_increment
     private String extra;
-
+    // 是否为空
+    private String ableNull;
+    // 字符串 最大长度
+    private Integer maxLen;
+    // 列类型 如 int(11) varchar(200)
+    private String columnType;
 
     //属性名称(第一个字母大写)，如：user_name => UserName
     private String attrName;
