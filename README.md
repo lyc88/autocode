@@ -7,6 +7,8 @@
 ![模板文件](https://github.com/lyc88/autocode/blob/master/src/main/resources/static/template.png)
 ![接口文档](https://github.com/lyc88/autocode/blob/master/src/main/resources/static/swagger.png)
 * 代码质量有待优化，毕竟半天写完。
+
+1.elasticsearch入门篇[https://www.cnblogs.com/hello-shf/p/11543408.html]
 改一下数据库连接,直接运行测试类就行 生成代码 在 test 目录下面 很容易就看到了。 例子：
 ```
 @Api(value = "用户",tags={"用户操作接口"})
