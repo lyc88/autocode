@@ -78,6 +78,12 @@
 28. Elasticsearch生产集群的配置建议[https://www.cnblogs.com/shoufeng/p/11077364.html]
 29. 从0开始搭建Elasticsearch生产集群[https://www.cnblogs.com/shoufeng/p/11081545.html]
 
+#### 随风行云 
+1. ElasticSearch的介绍(https://www.cnblogs.com/progor/p/11543146.html)
+2. ElasticSearch的认识：索引、类型、文档(https://www.cnblogs.com/progor/p/11548269.html)
+3. ElasticSearch的认识：搜索、过滤、排序(https://www.cnblogs.com/progor/p/11557869.html)
+4. ElasticSearch的认识：基础原理的补充(https://www.cnblogs.com/progor/p/11633926.html)
+
  ####铭毅天下（公众号同名） 
  1. 铭毅天下（公众号同名）[https://elastic.blog.csdn.net/]
  ####架构师的成长之路
