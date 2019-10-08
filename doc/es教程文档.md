@@ -77,7 +77,7 @@
 27. Elasticsearch的脚本使用实践[https://www.cnblogs.com/shoufeng/p/11360177.html]
 28. Elasticsearch生产集群的配置建议[https://www.cnblogs.com/shoufeng/p/11077364.html]
 29. 从0开始搭建Elasticsearch生产集群[https://www.cnblogs.com/shoufeng/p/11081545.html]
-
+30. Elasticsearch 数据建模的探索与实践[https://www.cnblogs.com/shoufeng/category/1332134.html]
 #### 随风行云 
 1. ElasticSearch的介绍(https://www.cnblogs.com/progor/p/11543146.html)
 2. ElasticSearch的认识：索引、类型、文档(https://www.cnblogs.com/progor/p/11548269.html)
