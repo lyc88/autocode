@@ -75,3 +75,7 @@
 20. Spring Security Oauth2 自定义 OAuth2 Exception
  
  ####  Security 专题 还可以参考易百教程
+ 
+ ####郑清 
+ [SpringBoot集成Spring Security入门体验](https://www.cnblogs.com/zhengqing/p/11612654.html)
+ [Spring Security 自定义登录认证（二）](https://www.cnblogs.com/zhengqing/p/11670991.html)
