@@ -34,12 +34,19 @@ public class EntityTemplate implements CodeTemplate {
     @Value("${packPathName:com/example/demo/test}")
     private String packPathName;
 
-    @Override
+    private Map data;
+
+
+    public void setData(Map data) {
+        this.data = data;
+    }
+
+
     public Map getData() {
         return null;
     }
 
-    @Override
+
     public Template getTemplate() {
         try {
             return configuration.getTemplate("Entity.java.ftl");
@@ -50,11 +57,11 @@ public class EntityTemplate implements CodeTemplate {
     }
 
     @Override
-    public void outFile(Template template, Map data) {
+    public void outFile() {
         try {
             TableEntity table = (TableEntity) data.get("table");
             Assert.notNull(table,"表结构不能为空");
-            String result = FreeMarkerTemplateUtils.processTemplateIntoString(template,data);
+            String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
             FileUtils.write(new File(parentPath+packPathName+entityPath+table.getClassName()+".java"),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();

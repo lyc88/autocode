@@ -7,6 +7,7 @@ import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.util.Assert;
 
@@ -18,6 +19,7 @@ import java.util.Map;
  * @author lyc
  * @date 2019/10/28.
  */
+@Service
 public class ServiceTemplate implements CodeTemplate {
 
     @Autowired
@@ -32,12 +34,18 @@ public class ServiceTemplate implements CodeTemplate {
     @Value("${packPathName:com/example/demo/test}")
     private String packPathName ;
 
-    @Override
+    private Map data;
+
+
+    public void setData(Map data) {
+        this.data = data;
+    }
+
     public Map getData() {
         return null;
     }
 
-    @Override
+
     public Template getTemplate() {
         try {
             return configuration.getTemplate("Service.java.ftl");
@@ -48,11 +56,11 @@ public class ServiceTemplate implements CodeTemplate {
     }
 
     @Override
-    public void outFile(Template template, Map data) {
+    public void outFile() {
         try {
             TableEntity table = (TableEntity) data.get("table");
             Assert.notNull(table,"表结构不能为空");
-            String result = FreeMarkerTemplateUtils.processTemplateIntoString(template,data);
+            String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
             FileUtils.write(new File(parentPath+packPathName+servicePath+table.getClassName()+"Service.java"),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();

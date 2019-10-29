@@ -7,6 +7,7 @@ import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.util.Assert;
 
@@ -18,10 +19,16 @@ import java.util.Map;
  * @author lyc
  * @date 2019/10/28.
  */
+@Service
 public class DaoTemplate implements CodeTemplate {
+
+
 
     @Autowired
     Configuration configuration;
+
+    @Autowired
+    private Constant constant;
 
     @Value("${mapperPath:/mapper/}")
     private String mapperPath;
@@ -32,18 +39,19 @@ public class DaoTemplate implements CodeTemplate {
     @Value("${parentPath:./src/main/resources/mapper}")
     private String xmlParentPath;
 
-    @Value("${parentPath:./src/main/java/}")
-    private String parentPath;
+    private Map data;
 
-    @Value("${packPathName:com/example/demo/test}")
-    private String packPathName;
 
-    @Override
-    public Map getData() {
-        return null;
+    public void setData(Map data) {
+        this.data = data;
     }
 
-    @Override
+
+    public Map getData() {
+        return data;
+    }
+
+
     public Template getTemplate() {
         try {
             return configuration.getTemplate("Mapper.java.ftl");
@@ -54,12 +62,13 @@ public class DaoTemplate implements CodeTemplate {
     }
 
     @Override
-    public void outFile(Template template, Map data) {
+    public void outFile() {
         try {
             TableEntity table = (TableEntity) data.get("table");
             Assert.notNull(table,"表结构不能为空");
-            String result = FreeMarkerTemplateUtils.processTemplateIntoString(template,data);
-            FileUtils.write(new File(parentPath+packPathName+mapperPath+table.getClassName()+"Mapper.java"),result,"utf-8");
+            String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
+
+            FileUtils.write(new File(constant.getParentPath()+constant.getPackPathName()+mapperPath+table.getClassName()+"Mapper.java"),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {
