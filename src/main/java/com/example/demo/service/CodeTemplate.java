@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import freemarker.template.Template;
-
 import java.util.Map;
 
 /**

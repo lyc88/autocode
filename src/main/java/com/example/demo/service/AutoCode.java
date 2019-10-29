@@ -59,7 +59,6 @@ public class AutoCode {
             }
             // 赋值
             table.setColumns(columns);
-            Map<String,Template> hashMap = new HashMap();
             Map<String,CodeTemplate> templates = applicationContext.getBeansOfType(CodeTemplate.class);
             for (Map.Entry<String,CodeTemplate> entry:templates.entrySet()){
                 CodeTemplate codeTemplate = entry.getValue();

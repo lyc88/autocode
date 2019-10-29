@@ -17,11 +17,10 @@ import java.util.Map;
 
 /**
  * @author lyc
- * @date 2019/10/28.
+ * @date 2019/10/29.
  */
 @Service
-public class DaoTemplate implements CodeTemplate {
-
+public class ControllerTemplate implements CodeTemplate {
 
 
     @Autowired
@@ -30,8 +29,8 @@ public class DaoTemplate implements CodeTemplate {
     @Autowired
     private Constant constant;
 
-    @Value("${mapperPath:/mapper/}")
-    private String mapperPath;
+    @Value("${controllerPath:/controller/}")
+    private String controllerPath;
 
     private Map data;
 
@@ -48,7 +47,7 @@ public class DaoTemplate implements CodeTemplate {
 
     public Template getTemplate() {
         try {
-            return configuration.getTemplate("Mapper.java.ftl");
+            return configuration.getTemplate("Controller.java.ftl");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,7 +61,7 @@ public class DaoTemplate implements CodeTemplate {
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
 
-            FileUtils.write(new File(constant.getParentPath()+constant.getPackPathName()+mapperPath+table.getClassName()+"Mapper.java"),result,"utf-8");
+            FileUtils.write(new File(constant.getParentPath()+constant.getPackPathName()+controllerPath+table.getClassName()+"Controller.java"),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {

@@ -17,38 +17,33 @@ import java.util.Map;
 
 /**
  * @author lyc
- * @date 2019/10/28.
+ * @date 2019/10/29.
  */
 @Service
-public class DaoTemplate implements CodeTemplate {
-
-
+public class DaoXMLTemplate implements CodeTemplate {
 
     @Autowired
     Configuration configuration;
 
-    @Autowired
-    private Constant constant;
+    @Value("${myBatisXmlPath:/xml/}")
+    private String myBatisXmlPath;
 
-    @Value("${mapperPath:/mapper/}")
-    private String mapperPath;
+    @Value("${parentPath:./src/main/resources/mapper}")
+    private String xmlParentPath;
 
     private Map data;
-
 
     public void setData(Map data) {
         this.data = data;
     }
 
-
     public Map getData() {
         return data;
     }
 
-
     public Template getTemplate() {
         try {
-            return configuration.getTemplate("Mapper.java.ftl");
+            return configuration.getTemplate("MyBatisXml.java.ftl");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,7 +57,7 @@ public class DaoTemplate implements CodeTemplate {
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
 
-            FileUtils.write(new File(constant.getParentPath()+constant.getPackPathName()+mapperPath+table.getClassName()+"Mapper.java"),result,"utf-8");
+            FileUtils.write(new File(xmlParentPath+myBatisXmlPath+table.getClassName()+"Mapper.xml"),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {
