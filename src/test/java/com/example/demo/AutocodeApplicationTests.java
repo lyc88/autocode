@@ -205,11 +205,19 @@ public class AutocodeApplicationTests {
 			tGoods.setProductCategoryId(Long.valueOf(typeId));
 			TProductCategory tProductCategory = tProductCategoryService.getById(typeId);
 			tGoods.setProductCategory(tProductCategory.getName());
+
 			Long pId = tProductCategory.getPId();
 			if(pId != null){
 				TProductCategory category = tProductCategoryService.getById(pId);
-				tGoods.setProductCategoryTwoId(category.getId());
-				tGoods.setProductCategoryTwo(category.getName());
+
+				tGoods.setProductCategoryTwoId(Long.valueOf(typeId));
+				tGoods.setProductCategoryTwo(tProductCategory.getName());
+
+
+
+				tGoods.setProductCategoryId(category.getId());
+				tGoods.setProductCategory(category.getName());
+
 			}
 
 			tGoods.setBarcode("");
