@@ -1,3 +1,4 @@
+/*
 package com.example.demo;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -85,7 +86,8 @@ public class AutocodeApplicationTests {
 	@Test
 	public void  testImport() {
 
-		/*redisTemplate.delete(unit);
+		*/
+/*redisTemplate.delete(unit);
 		redisTemplate.delete(type);
 		redisTemplate.delete(goods);
 		List<JxcTGoodsunit> jxcTGoodsunits = jxcTGoodsunitMapper.selectList(null);
@@ -101,7 +103,8 @@ public class AutocodeApplicationTests {
 		redisTemplate.opsForValue().set(unit, unitJson);
 		redisTemplate.opsForValue().set(type, typeJson);
 		redisTemplate.opsForValue().set(goods, goodsJson);
-*/
+*//*
+
 
 		String json =  redisTemplate.opsForValue().get(goods);
 
@@ -111,9 +114,11 @@ public class AutocodeApplicationTests {
 		jxcTGoodsunit.forEach(System.out::println);
 	}
 
-	/**
+	*/
+/**
 	 * 导入类型
-	 */
+	 *//*
+
 	@Test
 	public void testTypePath(){
 		String json =  redisTemplate.opsForValue().get(type);
@@ -160,9 +165,11 @@ public class AutocodeApplicationTests {
 
 	}
 
-	/**
+	*/
+/**
 	 * 导入单位
-	 */
+	 *//*
+
 	@Test
 	public void testUnit(){
 		tUnitService.remove(null);
@@ -185,9 +192,11 @@ public class AutocodeApplicationTests {
 
 	}
 
-	/**
+	*/
+/**
 	 * 导入商品信息
-	 */
+	 *//*
+
 	@Test
 	public void testGoods(){
 		tGoodsService.remove(null);
@@ -306,3 +315,4 @@ public class AutocodeApplicationTests {
 		userMapper.insert(jxcUser);
 	}
 }
+*/
