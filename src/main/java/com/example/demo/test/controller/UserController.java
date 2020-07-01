@@ -1,4 +1,5 @@
 package com.example.demo.test.controller;
+import cn.hutool.poi.excel.ExcelUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -68,6 +69,12 @@ public class UserController{
     }
 
 
-
+    @RequestMapping("user/exportTpl")
+    public void exportUserTpl(HttpServletResponse httpServletResponse){
+        List<String> hearder = Lists.newArrayList();
+        hearder.add("用户名");
+        hearder.add("年级");
+        ExcelUtils.exportExcelTpl(httpServletResponse,"用户模板",hearder);
+    }
 
 }

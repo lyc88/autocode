@@ -4,7 +4,9 @@ import cn.hutool.core.io.IoUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelWriter;
 
+import cn.hutool.poi.excel.StyleSet;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Font;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
@@ -64,4 +66,27 @@ public class ExcelUtils {
         }
         return null;
     }
+
+    public static void exportExcelTpl(HttpServletResponse response, String fileName, List<String> header){
+        Assert.isBlank(fileName,"文件名不能为空");
+        ExcelWriter writer = cn.hutool.poi.excel.ExcelUtil.getWriter();
+        writer.writeHeadRow(header);
+        response.setContentType("application/vnd.ms-excel;charset=utf-8");
+        try {
+            response.setHeader("Content-Disposition","attachment;filename="+new String(fileName.getBytes(), "ISO-8859-1")+".xlsx");
+        } catch (UnsupportedEncodingException e) {
+            log.error("编码格式不支持");
+        }
+        ServletOutputStream out= null;
+        try {
+            out = response.getOutputStream();
+            writer.flush(out);
+            writer.close();
+        } catch (IOException e) {
+            log.error("导出文件错误",e);
+        }finally {
+            IoUtil.close(out);
+        }
+    }
+
 }
