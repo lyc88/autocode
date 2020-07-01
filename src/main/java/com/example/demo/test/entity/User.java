@@ -12,11 +12,11 @@ import lombok.Data;
 * 
 *
 * @author lyc
-* @date 2020-03-26 19:19:50
+* @date 2020-07-01 17:19:03
 */
 @Data
-@TableName("t_goodsunit")
-public class JxcTGoodsunit{
+@TableName("user")
+public class User{
     /**
     * 
     */
@@ -28,8 +28,17 @@ public class JxcTGoodsunit{
     /**
     * 
     */
-    @ApiModelProperty(value = "")
+    @ApiModelProperty(value = "",required = true)
+    @NotNull(message = "不能为空")
     @TableField("name")
     private String name;
+
+    /**
+    * 
+    */
+    @ApiModelProperty(value = "",required = true)
+    @NotNull(message = "不能为空")
+    @TableField("age")
+    private Integer age;
 
 }

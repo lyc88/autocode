@@ -26,7 +26,7 @@ public class ExcelUtils {
      * @param fileName
      * @param rows
      */
-    public static void export(HttpServletResponse response, String fileName, List<Map> rows){
+    public static void exportExcel(HttpServletResponse response, String fileName, List<Map> rows){
         Assert.isBlank(fileName,"文件名不能为空");
         ExcelWriter writer = cn.hutool.poi.excel.ExcelUtil.getWriter();
         writer.write(rows, true);

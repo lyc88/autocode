@@ -2,14 +2,14 @@ package com.example.demo.test.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import com.example.demo.test.entity.JxcTOverflowListGoods;
+import com.example.demo.test.entity.User;
 /**
 * 
 *
 * @author lyc
-* @date 2020-03-26 19:19:50
+* @date 2020-07-01 17:19:03
 */
 @Mapper
-public interface JxcTOverflowListGoodsMapper extends BaseMapper<JxcTOverflowListGoods>{
+public interface UserMapper extends BaseMapper<User>{
 
 }

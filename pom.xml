@@ -42,8 +42,8 @@
 		<mssql.version>4.0</mssql.version>
 		<oracle.version>11.2.0.3</oracle.version>
 
-		<poi.version>3.17</poi.version>
 
+		<poi.version>4.1.2</poi.version>
 		<hutool.version>5.3.7</hutool.version>
 		<guava.version>27.0.1-jre</guava.version>
 		<user.agent.version>1.20</user.agent.version>
@@ -83,6 +83,12 @@
 			<artifactId>hutool-all</artifactId>
 			<version>${hutool.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
