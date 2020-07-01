@@ -67,6 +67,12 @@ public class ExcelUtils {
         return null;
     }
 
+    /**
+     * 导出模板
+     * @param response
+     * @param fileName
+     * @param header
+     */
     public static void exportExcelTpl(HttpServletResponse response, String fileName, List<String> header){
         Assert.isBlank(fileName,"文件名不能为空");
         ExcelWriter writer = cn.hutool.poi.excel.ExcelUtil.getWriter();
