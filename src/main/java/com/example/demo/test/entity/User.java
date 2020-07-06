@@ -49,6 +49,7 @@ public class User{
     @TableField("age")
     private Integer age;
 
+    //@DateTime
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createTime;

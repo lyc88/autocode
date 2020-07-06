@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.bean.ExcelUtils;
 import com.example.demo.bean.Result;
 import com.google.common.collect.Lists;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.test.entity.User;
@@ -85,7 +86,12 @@ public class UserController{
 
 
     @RequestMapping("user/save")
-    public Result save(@RequestBody User user){
+    public Result save(@Validated @RequestBody User user){
         return Result.ok(userService.save(user));
+    }
+
+    @RequestMapping("user/update")
+    public Result update(@Validated  User user){
+        return Result.ok();
     }
 }
