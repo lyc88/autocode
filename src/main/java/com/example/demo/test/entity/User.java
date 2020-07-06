@@ -1,12 +1,18 @@
 package com.example.demo.test.entity;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
 * 
@@ -22,7 +28,7 @@ public class User{
     */
     @ApiModelProperty(value = "" ,required = true)
     @NotNull(message = "不能为空")
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -31,6 +37,8 @@ public class User{
     @ApiModelProperty(value = "",required = true)
     @NotNull(message = "不能为空")
     @TableField("name")
+    @JsonSerialize(using = ToUpperCaseSerializer.class)
+    @JsonDeserialize(using = ToLowerCaseCaseSerializer.class)
     private String name;
 
     /**
@@ -40,5 +48,9 @@ public class User{
     @NotNull(message = "不能为空")
     @TableField("age")
     private Integer age;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date createTime;
 
 }

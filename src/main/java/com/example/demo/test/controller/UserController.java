@@ -77,4 +77,15 @@ public class UserController{
         ExcelUtils.exportExcelTpl(httpServletResponse,"用户模板",hearder);
     }
 
+
+    @RequestMapping("user/list")
+    public Result list(){
+        return Result.ok(userService.list());
+    }
+
+
+    @RequestMapping("user/save")
+    public Result save(@RequestBody User user){
+        return Result.ok(userService.save(user));
+    }
 }
