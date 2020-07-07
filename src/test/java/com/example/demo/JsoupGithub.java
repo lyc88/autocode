@@ -25,6 +25,7 @@ public class JsoupGithub {
 
         Elements aList = first.select("li");
         aList.forEach(e->{
+            System.out.println(e.select("h3>a").attr("abs:href"));
             System.out.println(e.select("h3").text());
             System.out.println(e.select("p").text());
 
