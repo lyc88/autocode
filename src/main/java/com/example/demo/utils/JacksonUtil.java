@@ -11,7 +11,8 @@ public class JacksonUtil {
 
     //配置ObjectMapper对象
     private static ObjectMapper objectMapper = new ObjectMapper()
-            .configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+            .configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);  ;
 
     /**
      * 使用泛型方法，把json字符串转换为相应的JavaBean对象。

@@ -19,6 +19,8 @@ public interface MysqlMapper {
 
     TableEntity queryTable(String tableName);
 
+    TableEntity queryTable(String tableName,String a);
+
     List<ColumnEntity> queryColumns(String tableName);
 
 
