@@ -7,6 +7,10 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+/**
+ *  文档
+ *  https://www.open-open.com/jsoup/selector-syntax.htm
+ */
 public class JsoupGithub {
 
     public static void main(String[] args) throws IOException {
