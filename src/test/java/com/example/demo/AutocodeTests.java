@@ -28,7 +28,7 @@ public class AutocodeTests {
 
     @Test
     public void contextLoads() throws IOException, TemplateException {
-        mysqlAutoService.autoCode("user");
+        mysqlAutoService.autoCode("link");
     }
 
     @Test
