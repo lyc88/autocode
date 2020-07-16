@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.test.entity.Link;
 import com.example.demo.test.service.LinkService;
 import com.google.common.collect.Lists;
+import com.mzlion.easyokhttp.HttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,7 +30,6 @@ public class JsoupGitee {
 
         String totalPage = doc.select("#git-discover-page>a[class=item]").last().html();
         //page(Integer.parseInt(totalPage)+1);
-
     }
     @Autowired
     private LinkService linkService;
