@@ -9,6 +9,6 @@ import ${package}.${moduleName}.entity.${table.className};
 * @describe ${table.tableComment}${table.tableComment}
 */
 
-public interface ${table.className}Service extends BaseService<${table.className}>{
+public interface ${table.className}Service extends BaseService<${table.className}DO>{
 
 }

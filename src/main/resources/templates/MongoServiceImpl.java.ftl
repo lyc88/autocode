@@ -11,6 +11,6 @@ import ${package}.${moduleName}.mapper.${table.className}Mapper;
 * @describe ${table.tableComment}${table.tableComment}
 */
 @Service
-public class ${table.className}ServiceImpl extends BaseServiceImpl<${table.className}> implements  ${table.className}Service{
+public class ${table.className}ServiceImpl extends BaseServiceImpl<${table.className}DO> implements  ${table.className}Service{
 
 }

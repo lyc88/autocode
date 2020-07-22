@@ -31,7 +31,6 @@ public class ${table.className}DO extends BaseDO implements Serializable{
         <#if swaggerEnable==true>
     @ApiModelProperty(value = "${column.columnComment}" <#if column.ableNull=="NO">,required = true</#if>)
         </#if>
-
     @Id
     @Field(value = "${column.columnName}")
     private ${column.attrType} ${column.attrName};
@@ -39,7 +38,6 @@ public class ${table.className}DO extends BaseDO implements Serializable{
         <#if swaggerEnable==true>
     @ApiModelProperty(value = "${column.columnComment}"<#if column.ableNull=="NO">,required = true</#if>)
         </#if>
-
     @Field("${column.columnName}")
     private ${column.attrType} ${column.attrName};
     </#if>
