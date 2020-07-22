@@ -9,7 +9,7 @@ import com.example.demo.test.mapper.LinkMapper;
 * 
 *
 * @author lyc
-* @date 2020-07-08 14:21:51
+* @date 2020-07-20 17:51:51
 */
 @Service
 public class LinkServiceImpl extends ServiceImpl<LinkMapper,Link> implements  LinkService{

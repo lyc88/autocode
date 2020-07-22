@@ -7,7 +7,7 @@ import com.example.demo.test.entity.Link;
 * 
 *
 * @author lyc
-* @date 2020-07-08 14:21:51
+* @date 2020-07-20 17:51:51
 */
 @Mapper
 public interface LinkMapper extends BaseMapper<Link>{

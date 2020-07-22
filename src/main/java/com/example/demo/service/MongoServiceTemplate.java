@@ -19,19 +19,20 @@ import java.util.Map;
  * @author lyc
  * @date 2019/10/28.
  */
-//@Service
-public class DaoTemplate implements CodeTemplate {
-
-
+@Service
+public class MongoServiceTemplate implements CodeTemplate {
 
     @Autowired
     Configuration configuration;
 
-    @Autowired
-    private Constant constant;
+    @Value("${parentPath:./src/main/java/}")
+    private String parentPath;
 
-    @Value("${mapperPath:/mapper/}")
-    private String mapperPath;
+    @Value("${servicePath:/service/}")
+    private String servicePath;
+
+    @Value("${packPathName:com/example/demo/test}")
+    private String packPathName ;
 
     private Map data;
 
@@ -40,15 +41,14 @@ public class DaoTemplate implements CodeTemplate {
         this.data = data;
     }
 
-
     public Map getData() {
-        return data;
+        return null;
     }
 
 
     public Template getTemplate() {
         try {
-            return configuration.getTemplate("Mapper.java.ftl");
+            return configuration.getTemplate("MongoService.java.ftl");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,8 +61,7 @@ public class DaoTemplate implements CodeTemplate {
             TableEntity table = (TableEntity) data.get("table");
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
-
-            FileUtils.write(new File(constant.getParentPath()+constant.getPackPathName()+mapperPath+table.getClassName()+"Mapper.java"),result,"utf-8");
+            FileUtils.write(new File(parentPath+packPathName+servicePath+table.getClassName()+"Service.java"),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {

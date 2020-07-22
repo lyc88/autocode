@@ -47,7 +47,7 @@ public class MysqlAutoService {
     /**
      * 是否开启  swagger2
      */
-    @Value(value = "${swagger.enable:true}")
+    @Value(value = "${swagger.enable:false}")
     private Boolean swaggerEnable;
 
     /**

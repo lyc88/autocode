@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.service.AutoCode;
 import com.example.demo.service.MysqlAutoService;
 import freemarker.template.TemplateException;
 import org.junit.Test;
@@ -25,10 +26,11 @@ public class AutocodeTests {
 
     @Autowired
     private MysqlAutoService mysqlAutoService;
-
+    @Autowired
+    private AutoCode autoCode;
     @Test
     public void contextLoads() throws IOException, TemplateException {
-        mysqlAutoService.autoCode("link");
+        autoCode.autoCode("t_user_system_info");
     }
 
     @Test

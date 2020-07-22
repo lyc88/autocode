@@ -6,13 +6,13 @@
     <resultMap id="BaseResultMap" type="com.example.demo.test.entity.Link">
           <id column="id" property="id" />
           <result column="title" property="title" />
-          <result column="desc" property="desc" />
+          <result column="summary" property="summary" />
           <result column="source" property="source" />
           <result column="create_time" property="createTime" />
           <result column="update_time" property="updateTime" />
           <result column="link" property="link" />
     </resultMap>
     <sql id="BaseColumn">
-      id, title, desc, source, create_time, update_time, link
+      id, title, summary, source, create_time, update_time, link
     </sql>
 </mapper>

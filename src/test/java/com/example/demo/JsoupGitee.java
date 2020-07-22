@@ -61,7 +61,7 @@ public class JsoupGitee {
                 Link link = new Link();
                 //System.out.println(EmojiUtil.toAlias(desc));
                 link.setTitle(title);
-                link.setDesc(desc);
+                link.setSummary(desc);
                 link.setSource("gitee");
                 link.setCreateTime(new Date());
                 link.setUpdateTime(new Date());

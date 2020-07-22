@@ -1,5 +1,4 @@
 package com.example.demo.test.entity;
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -7,15 +6,13 @@ import javax.validation.constraints.NotNull;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import lombok.Builder;
 import lombok.Data;
 
 /**
 * 
 *
 * @author lyc
-* @date 2020-07-08 14:21:51
+* @date 2020-07-20 17:51:51
 */
 @Data
 @TableName("link")
@@ -25,7 +22,7 @@ public class Link{
     */
     @ApiModelProperty(value = "" ,required = true)
     @NotNull(message = "不能为空")
-    @TableId(type = IdType.AUTO)
+    @TableId
     private Integer id;
 
     /**
@@ -42,7 +39,7 @@ public class Link{
     @ApiModelProperty(value = "描述",required = true)
     @NotNull(message = "描述不能为空")
     @TableField("summary")
-    private String desc;
+    private String summary;
 
     /**
     * 来源 gitee ,github

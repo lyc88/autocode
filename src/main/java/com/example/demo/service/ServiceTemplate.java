@@ -19,7 +19,7 @@ import java.util.Map;
  * @author lyc
  * @date 2019/10/28.
  */
-@Service
+//@Service
 public class ServiceTemplate implements CodeTemplate {
 
     @Autowired
