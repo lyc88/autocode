@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 </#if>
 import java.util.Date;
-import lombok.Data;
 
 /**
 * ${table.tableComment}
@@ -13,9 +12,7 @@ import lombok.Data;
 * @author ${author}
 * @date ${datetime}
 */
-@Data
-@TableName("${table.tableName}")
-public class ${table.className}{
+public class ${table.className}DeleteReqVO{
     @NotBlank(message = "${column.columnComment}不能为空")
     private String id;
 }
