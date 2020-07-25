@@ -1,3 +1,4 @@
+/*
 package com.example.demo;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -80,7 +81,8 @@ public class AutocodeApplicationTests {
 	@Test
 	public void test03() throws InterruptedException {
 		sysUsersService.test();
-		/*int clientTotal = 20;
+		*/
+/*int clientTotal = 20;
 		// 同时并发执行的线程数
 		int threadTotal = 20;
 		int count = 0;
@@ -109,7 +111,8 @@ public class AutocodeApplicationTests {
 		}
 
 		countDownLatch.await();//线程阻塞，直到闭锁值为0时，阻塞才释放，继续往下执行
-		executorService.shutdown();*/
+		executorService.shutdown();*//*
+
 
 	}
 	// 初始化 进销存 数据 单位 分类 商品
@@ -120,7 +123,8 @@ public class AutocodeApplicationTests {
 	@Test
 	public void testImport() {
 
-		/*redisTemplate.delete(unit);
+		*/
+/*redisTemplate.delete(unit);
 		redisTemplate.delete(type);
 		redisTemplate.delete(goods);
 		List<JxcTGoodsunit> jxcTGoodsunits = jxcTGoodsunitMapper.selectList(null);
@@ -136,22 +140,28 @@ public class AutocodeApplicationTests {
 		redisTemplate.opsForValue().set(unit, unitJson);
 		redisTemplate.opsForValue().set(type, typeJson);
 		redisTemplate.opsForValue().set(goods, goodsJson);
-*/
+*//*
 
 
 
 
-		/*List<JxcTGoods> jxcTGoodsunit = Arrays.asList(JacksonUtil.readValue(json, JxcTGoods[].class));
+
+		*/
+/*List<JxcTGoods> jxcTGoodsunit = Arrays.asList(JacksonUtil.readValue(json, JxcTGoods[].class));
 		// 导入 单位 分类 商品 数据
-		jxcTGoodsunit.forEach(System.out::println);*/
+		jxcTGoodsunit.forEach(System.out::println);*//*
+
 	}
 
-	/**
+	*/
+/**
 	 * 导入类型
-	 */
+	 *//*
+
 	@Test
 	public void testTypePath() {
-	/*	String json =  redisTemplate.opsForValue().get(type);
+	*/
+/*	String json =  redisTemplate.opsForValue().get(type);
 		List<JxcTGoodstype> jxcTGoodstypeList = Arrays.asList(JacksonUtil.readValue(json, JxcTGoodstype[].class));
 		//List<JxcTGoodstype> collect = jxcTGoodstypeList.stream().filter(e -> e.getState() == 1).collect(Collectors.toList());
 		//无须 递归遍历
@@ -189,17 +199,21 @@ public class AutocodeApplicationTests {
 			if(!item.getName().equals("test"))
 			tProductCategoryService.save(tProductCategory);
 
-		});*/
+		});*//*
+
 
 
 	}
 
-	/**
+	*/
+/**
 	 * 导入单位
-	 */
+	 *//*
+
 	@Test
 	public void testUnit() {
-	/*	tUnitService.remove(null);
+	*/
+/*	tUnitService.remove(null);
 		String jsonUnit =  redisTemplate.opsForValue().get(unit);
 		List<JxcTGoodsunit> jxcTGoodsunits = Arrays.asList(JacksonUtil.readValue(jsonUnit, JxcTGoodsunit[].class));
 		for (int i = 0; i < jxcTGoodsunits.size(); i++) {
@@ -215,18 +229,22 @@ public class AutocodeApplicationTests {
 
 
 			tUnitService.save(unit);
-		}*/
+		}*//*
+
 
 	}
 
-	/**
+	*/
+/**
 	 * 导入商品信息
-	 */
+	 *//*
+
 	@Test
 	public void testGoods() {
 
 	}
 
+*/
 /*
 	public String getPath(JxcTGoodstype goodstype,List<JxcTGoodstype> jxcTGoodstypeList){
 		String path = "";
@@ -241,9 +259,11 @@ public class AutocodeApplicationTests {
 
 
 	}
-*/
+*//*
 
-	/*public JxcTGoodstype goodstype(JxcTGoodstype goodstype,List<JxcTGoodstype> jxcTGoodstypeList){
+
+	*/
+/*public JxcTGoodstype goodstype(JxcTGoodstype goodstype,List<JxcTGoodstype> jxcTGoodstypeList){
 		for (int i = 0; i < jxcTGoodstypeList.size(); i++) {
 			if(goodstype.getPId() == jxcTGoodstypeList.get(i).getId()){
 				return jxcTGoodstypeList.get(i);
@@ -252,13 +272,16 @@ public class AutocodeApplicationTests {
 		return null;
 	}
 
-*/
-	/*@Test
+*//*
+
+	*/
+/*@Test
 	public void testUnix(){
 		JxcUser jxcUser = new JxcUser();
 		jxcUser.setName("aaa");
 		userMapper.insert(jxcUser);
-	}*/
+	}*//*
+
 
 	@Test
 	public void test011() {
@@ -343,3 +366,4 @@ public class AutocodeApplicationTests {
 }
 
 
+*/
