@@ -3,6 +3,7 @@ package com.example.demo;
 
 
 import com.example.demo.bean.Person;
+import com.example.demo.config.KafkaConsts;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.CollectionUtils;
 
@@ -55,6 +57,15 @@ public class MongoTest {
 		Query query = new Query().addCriteria(Criteria.where("_id").is(0));
 		Person person = mongoTemplate.findOne(query, Person.class);
 		System.out.println(person);
+
+	}
+
+	@Autowired
+	private KafkaTemplate<String, String> kafkaTemplate;
+	@Test
+	public void testSendKafka(){
+
+		kafkaTemplate.send(KafkaConsts.TOPIC_TEST, "hello,kafka...");
 
 	}
 }
