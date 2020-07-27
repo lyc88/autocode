@@ -47,7 +47,7 @@ public class ControllerTemplate implements CodeTemplate {
 
     public Template getTemplate() {
         try {
-            return configuration.getTemplate("Controller.java.ftl");
+            return configuration.getTemplate("JCController.java.ftl");
         } catch (IOException e) {
             e.printStackTrace();
         }

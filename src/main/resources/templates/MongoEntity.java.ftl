@@ -20,7 +20,6 @@ import lombok.Data;
 * @date ${datetime}
 * @describe ${table.tableComment}
 */
-@Data
 @Document(collection = "${table.tableName}")
 public class ${table.className}DO extends BaseDO implements Serializable{
 <#list table.columns as column>

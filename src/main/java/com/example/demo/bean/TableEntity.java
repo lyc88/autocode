@@ -22,4 +22,5 @@ public class TableEntity {
 	private String className;
 	// sys_user => sysUser
 	private String attrName;
+
 }

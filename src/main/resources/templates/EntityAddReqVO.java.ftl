@@ -20,9 +20,6 @@ public class ${table.className}AddReqVO{
     * ${column.columnComment}
     */
     @ApiModelProperty(value = "${column.columnComment}" <#if column.ableNull=="NO">,required = true</#if>)
-        <#if column.ableNull=="NO">
-    @NotNull(message = "${column.columnComment}不能为空")
-        </#if>
     private ${column.attrType} ${column.attrName};
 
 </#list>

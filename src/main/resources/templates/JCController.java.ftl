@@ -36,8 +36,9 @@ public class ${table.className}Controller{
     *  ${table.tableComment} 分页查询
     */
     @ApiOperation("${table.tableComment}分页列表")
-    @GetMapping("/v1/page/${table.attrName}")
-    public Result<Page<${table.className}>> page${table.className}(${table.className}QueryReqVO ${table.className}QueryReqVO){
+    @ApiVersion(API.V1)
+    @GetMapping("/page/${table.attrName}")
+    public Result<ExternalPage<${table.className}DO>> page${table.className}(${table.className}QueryReqVO ${table.attrName}QueryReqVO){
 
         return new Result(RETURN_CODE_100200);
     }
@@ -48,11 +49,33 @@ public class ${table.className}Controller{
     *  id删除
     */
     @ApiOperation(value = "id删除")
-    @DeleteMapping("/v1/delete${table.attrName}ById")
-    public Result delete(${table.className}DeleteVO ${table.className}DeleteVO ){
-        Boolean success = ${table.attrName}Service.removeById(id);
+    @ApiVersion(API.V1)
+    @DeleteMapping("/delete/${table.className}ById")
+    public Result delete(${table.className}DeleteReqVO ${table.attrName}DeleteReqVO ){
+
         return new Result(RETURN_CODE_100200);
     }
 
 
+    /**
+    *  ${table.tableComment}更新
+    */
+    @ApiOperation(value = "${table.className}更新")
+    @ApiVersion(API.V1)
+    @PutMapping("/update/${table.className}")
+    public Result update(${table.className}DeleteReqVO ${table.attrName}DeleteReqVO ){
+
+        return new Result(RETURN_CODE_100200);
+    }
+
+    /**
+    *  ${table.tableComment}添加
+    */
+    @ApiOperation(value = "${table.className}添加")
+    @ApiVersion(API.V1)
+    @PostMapping("/add/${table.className}ById")
+    public Result add(${table.className}DeleteReqVO ${table.attrName}DeleteReqVO ){
+
+        return new Result(RETURN_CODE_100200);
+    }
 }
