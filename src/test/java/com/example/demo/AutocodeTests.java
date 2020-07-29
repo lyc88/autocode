@@ -36,6 +36,10 @@ public class AutocodeTests {
         //autoCode.autoCode("t_user_platform_info");
         DateTime endTime = DateUtil.endOfDay(new Date());
         DateTime startTime = DateUtil.beginOfDay(new Date());
+        System.out.println(" time "+endTime.getTime());
+        System.out.println(" time "+endTime.getTime()/1000L);
+
+        System.out.println("--"+endTime.toCalendar().getTimeInMillis());
         String end = DateUtil.format(new Date(endTime.getTime()), "yyyy-MM-dd HH:mm:ss");
         String start = DateUtil.format(new Date(startTime.getTime()), "yyyy-MM-dd HH:mm:ss");
         System.out.println(end);
@@ -45,6 +49,8 @@ public class AutocodeTests {
         String d = DateUtil.format(new Date(dateTime.getTime()), "yyyy-MM-dd HH:mm:ss");
         System.out.println(d);
         System.out.println((System.currentTimeMillis()+"").length());
+
+
 
     }
 
