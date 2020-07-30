@@ -71,7 +71,7 @@ public class UserController{
 
 
     @RequestMapping("user/exportTpl")
-    public void exportUserTpl(HttpServletResponse httpServletResponse){
+    public void exportUserTpl(@RequestBody User user,HttpServletResponse httpServletResponse){
         List<String> hearder = Lists.newArrayList();
         hearder.add("用户名");
         hearder.add("年级");

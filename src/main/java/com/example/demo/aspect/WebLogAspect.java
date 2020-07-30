@@ -1,11 +1,11 @@
-/*
+
 package com.example.demo.aspect;
 
+import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
-import com.alibaba.fastjson.JSON;
-import com.zt.common.utils.IPUtils;
-import com.zt.common.utils.SubjectUtils;
-import com.zt.modules.sys.entity.SysUserEntity;
+
+
+import com.mzlion.core.http.IPUtils;
 import nl.bitwalker.useragentutils.Browser;
 import nl.bitwalker.useragentutils.OperatingSystem;
 import nl.bitwalker.useragentutils.UserAgent;
@@ -25,14 +25,14 @@ import java.net.InetAddress;
 import java.util.Map;
 
 
-*/
+
 /**
  * @author lyc
  * @link https://www.cnblogs.com/bigben0123/p/7779357.html
  *
  * 我们需要定义每个切面的优先级，我们需要@Order(i)注解来标识切面的优先级。i的值越小，优先级越高
  * @date 2020/6/18
- *//*
+ */
 
 @Aspect
 @Component
@@ -61,22 +61,22 @@ public class WebLogAspect {
 
             logger.info("browser:{} system:{}", browserName,system);
 
-            logger.info("request ip:{}", IPUtils.getIpAddr(request));
+            logger.info("request ip:{}", IPUtils.getClientIp(request));
             logger.info("http_method : {}", request.getMethod());
             logger.info("uri : {}", request.getRequestURI());
             Map<String, String[]> parameterMap = request.getParameterMap();
-            logger.info("parameterMap : {}", JSON.toJSONString(parameterMap));
-
+            logger.info("parameterMap : {}", JSONUtil.toJsonStr(parameterMap));
+            logger.info("parameters : {}", JSONUtil.toJsonStr(pjp.getArgs()));
             //方便查找那台服务器报错
             InetAddress addr = InetAddress.getLocalHost();
             String ip = addr.getHostAddress().toString();
             String hostName = addr.getHostName().toString();
-            SysUserEntity currentSysUser = SubjectUtils.getCurrentSysUser();
+          /*  SysUserEntity currentSysUser = SubjectUtils.getCurrentSysUser();
             if (currentSysUser != null) {
                 logger.info("username : {} ", currentSysUser.getUsername());
             } else {
                 logger.info("username : {} ", "");
-            }
+            }*/
             logger.info("host : {} ip {}", hostName, ip);
             //logger.info("class_method : {},{}" , pjp.getSignature().getDeclaringTypeName() ,pjp.getSignature().getName());
 
@@ -91,4 +91,4 @@ public class WebLogAspect {
             logger.info("耗时:{}秒", (end - start) / 1000);
         }
     }
-}*/
+}

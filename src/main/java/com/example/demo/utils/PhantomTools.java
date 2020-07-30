@@ -19,7 +19,7 @@ public class PhantomTools {
     // private static final String _tempPath = "/data/temp/phantom_";
     // private static final String _shellCommand = "/usr/local/xxx/phantomjs /usr/local/xxx/rasterize.js ";  Linux下的命令
     private static final String _tempPath = "D:/data/temp/phantom_";
-    private static final String _shellCommand = "F:/phantomjs-2.1.1-windows/bin/phantomjs F:/phantomjs-2.1.1-windows/examples/rasterize.js ";
+    private static final String _shellCommand = "F:/phantomjs-2.1.1-windows/bin/phantomjs F:/phantomjs-2.1.1-windows/examples/render.js";
 
     private String _file;
     private String _size;
