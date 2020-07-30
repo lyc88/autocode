@@ -1,10 +1,11 @@
 
 package com.example.demo.aspect;
 
-import cn.hutool.json.JSON;
+
 import cn.hutool.json.JSONUtil;
 
 
+import com.alibaba.fastjson.JSON;
 import com.mzlion.core.http.IPUtils;
 import nl.bitwalker.useragentutils.Browser;
 import nl.bitwalker.useragentutils.OperatingSystem;
@@ -66,7 +67,9 @@ public class WebLogAspect {
             logger.info("uri : {}", request.getRequestURI());
             Map<String, String[]> parameterMap = request.getParameterMap();
             logger.info("parameterMap : {}", JSONUtil.toJsonStr(parameterMap));
-            logger.info("parameters : {}", JSONUtil.toJsonStr(pjp.getArgs()));
+            logger.info("parameterMap : {}", JSONUtil.toJsonStr(pjp.getArgs()));
+            // 阿里 的序列化 response 有问题 会导致 下载 getOutputStream() has already been called for this response
+            //logger.info("parameters : {}", JSON.toJSONString(pjp.getArgs()));
             //方便查找那台服务器报错
             InetAddress addr = InetAddress.getLocalHost();
             String ip = addr.getHostAddress().toString();
