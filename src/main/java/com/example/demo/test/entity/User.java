@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import javax.validation.constraints.NotNull;
 
+import com.example.demo.bean.Page;
+import com.example.demo.bean.PageDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -22,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 */
 @Data
 @TableName("user")
-public class User{
+public class User extends PageDTO {
     /**
     * 
     */

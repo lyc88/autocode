@@ -17,6 +17,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -61,14 +62,17 @@ public class WebLogAspect {
             String browserName = browser.getName();
 
             logger.info("browser:{} system:{}", browserName,system);
-
+            String contentType = request.getHeader("content-type");
+            if(contentType.toLowerCase().indexOf(MediaType.APPLICATION_JSON_VALUE) !=-1){
+                logger.info("parameters : {}", JSONUtil.toJsonStr(pjp.getArgs()));
+            }
             logger.info("content-type:{}",  request.getHeader("content-type"));
             logger.info("request ip:{}", IPUtils.getClientIp(request));
             logger.info("http_method : {}", request.getMethod());
             logger.info("uri : {}", request.getRequestURI());
             Map<String, String[]> parameterMap = request.getParameterMap();
             logger.info("parameterMap : {}", JSONUtil.toJsonStr(parameterMap));
-            logger.info("parameterMap : {}", JSONUtil.toJsonStr(pjp.getArgs()));
+
             // 阿里 的序列化 response 有问题 会导致 下载 getOutputStream() has already been called for this response
             //logger.info("parameters : {}", JSON.toJSONString(pjp.getArgs()));
             //方便查找那台服务器报错

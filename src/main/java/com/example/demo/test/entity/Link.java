@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
 * 
@@ -55,6 +56,7 @@ public class Link{
     @ApiModelProperty(value = "创建时间",required = true)
     @NotNull(message = "创建时间不能为空")
     @TableField("create_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
 
     /**
@@ -63,6 +65,7 @@ public class Link{
     @ApiModelProperty(value = "最后修改时间",required = true)
     @NotNull(message = "最后修改时间不能为空")
     @TableField("update_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateTime;
 
     /**
