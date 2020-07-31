@@ -33,8 +33,8 @@ public class AutocodeTests {
     private AutoCode autoCode;
     @Test
     public void contextLoads() throws IOException, TemplateException {
-        //autoCode.autoCode("t_user_platform_info");
-        DateTime endTime = DateUtil.endOfDay(new Date());
+        autoCode.autoCode("t_user_platform_info");
+       /* DateTime endTime = DateUtil.endOfDay(new Date());
         DateTime startTime = DateUtil.beginOfDay(new Date());
         System.out.println(" time "+endTime.getTime());
         System.out.println(" time "+endTime.getTime()/1000L);
@@ -48,7 +48,7 @@ public class AutocodeTests {
         DateTime dateTime = DateUtil.beginOfDay(new Date(1595210051*1000));
         String d = DateUtil.format(new Date(dateTime.getTime()), "yyyy-MM-dd HH:mm:ss");
         System.out.println(d);
-        System.out.println((System.currentTimeMillis()+"").length());
+        System.out.println((System.currentTimeMillis()+"").length());*/
 
 
 
