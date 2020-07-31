@@ -62,6 +62,7 @@ public class WebLogAspect {
 
             logger.info("browser:{} system:{}", browserName,system);
 
+            logger.info("content-type:{}",  request.getHeader("content-type"));
             logger.info("request ip:{}", IPUtils.getClientIp(request));
             logger.info("http_method : {}", request.getMethod());
             logger.info("uri : {}", request.getRequestURI());
