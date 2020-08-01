@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.Fields;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -40,7 +41,14 @@ public class MongoTest {
         System.out.println(maps);
 
         // 分组 根据 年龄分组 统计 年龄多少人 并且知道是那些人
+       // Fields.
         Aggregation aggregation = Aggregation.newAggregation(
+                //Aggregation.match(Criteria.where("id").is(0)),
+                //Aggregation.project("id"),
+                //Aggregation.group(fields),
+                //Aggregation.sort(sort),
+                //Aggregation.skip(elementsToSkip),
+                //Aggregation.limit(maxElements),
                 Aggregation.group("age").count().as("count")
                         .addToSet("name").as("name")
                         .first("age").as("age")
