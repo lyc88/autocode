@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.example.demo.service.AutoCode;
 import com.example.demo.service.MysqlAutoService;
+import com.example.demo.test.service.UserService;
 import freemarker.template.TemplateException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,9 +32,12 @@ public class AutocodeTests {
     private MysqlAutoService mysqlAutoService;
     @Autowired
     private AutoCode autoCode;
+    @Autowired
+    private UserService userService;
     @Test
-    public void contextLoads() throws IOException, TemplateException {
-        autoCode.autoCode("t_user_platform_info");
+    public void contextLoads() throws Exception {
+        //autoCode.autoCode("t_user_platform_info");
+        userService.saveU(null);
        /* DateTime endTime = DateUtil.endOfDay(new Date());
         DateTime startTime = DateUtil.beginOfDay(new Date());
         System.out.println(" time "+endTime.getTime());

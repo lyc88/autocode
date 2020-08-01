@@ -12,4 +12,5 @@ import com.example.demo.test.entity.User;
 
 public interface UserService extends IService<User>{
 
+   boolean saveU(User u) throws Exception;
 }
