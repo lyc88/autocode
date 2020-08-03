@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 */
 @Data
 @TableName("user")
-public class User extends PageDTO {
+public class User  {
     /**
     * 
     */

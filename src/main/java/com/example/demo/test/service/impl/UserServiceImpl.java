@@ -21,16 +21,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements  Us
 
 
 
-    @Transactional
+    @Transactional(rollbackFor = {Exception.class})
     @Override
     public boolean saveU(User u) throws Exception {
         User t = new User();
-        t.setId(1110);
-        t.setName("1323232323");
+        //t.setId(111110);
+        t.setName("132323231123233444");
         t.setAge(0);
         t.setCreateTime(new Date());
-        t.setLimit(0);
-        t.setPage(0);
+       // t.setLimit(0);
+       // t.setPage(0);
         boolean save = save(t);
         if(save){
             throw new Exception("hhhe");
