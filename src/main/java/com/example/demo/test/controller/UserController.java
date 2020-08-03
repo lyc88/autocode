@@ -3,6 +3,7 @@ import cn.hutool.poi.excel.ExcelUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.deepoove.poi.XWPFTemplate;
 import com.example.demo.bean.ExcelUtils;
 import com.example.demo.bean.Result;
 import com.google.common.collect.Lists;
@@ -20,6 +21,10 @@ import com.example.demo.bean.CommonResultResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +85,29 @@ public class UserController{
 
 
     @RequestMapping("user/list")
-    public Result list(){
+    public Result list(HttpServletResponse response) throws Exception {
+
+       XWPFTemplate template = XWPFTemplate.compile("D:\\test.docx").render(
+                new HashMap<String, Object>(){{
+                    put("title", "Hi, poi-tl Word模板引擎");
+                }});
+     /*   FileOutputStream out = new FileOutputStream("output.docx");
+        template.write(out);
+        out.flush();
+        out.close();
+        template.close();*/
+
+        //response.setContentType("application/msword");
+        response.setContentType("application/octet-stream;charset=utf-8");
+        response.setHeader("Content-disposition","attachment;filename=\""+"out_template.docx"+"\"");
+
+        OutputStream out = response.getOutputStream();
+        // 下面这行 加上会有乱码 字符流的原因
+        //BufferedOutputStream bos = new BufferedOutputStream(out);
+        template.write(out);
+        template.close();
+        out.flush();
+        out.close();
         return Result.ok(userService.list());
     }
 

@@ -58,7 +58,7 @@ public class JsoupGithub {
             Link link = new Link();
             //System.out.println(EmojiUtil.toAlias(desc));
             link.setTitle(title);
-            link.setDesc(desc);
+            link.setSummary(desc);
             link.setSource("gitHub");
             link.setCreateTime(new Date());
             link.setUpdateTime(new Date());
@@ -120,7 +120,7 @@ public class JsoupGithub {
             Link link = new Link();
 
             link.setTitle(title);
-            link.setDesc(desc);
+            link.setSummary(desc);
             link.setSource("gitHub");
             link.setCreateTime(new Date());
             link.setUpdateTime(new Date());
