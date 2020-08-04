@@ -23,10 +23,7 @@ import com.example.demo.bean.CommonResultResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,12 +84,12 @@ public class UserController{
 
 
     @RequestMapping("user/list")
-    public Result list(HttpServletResponse response) throws IOException {
+    public void list(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
         String attachName = new String(("测试").getBytes(), "ISO-8859-1");
         response.setHeader("Content-disposition","attachment;filename="+attachName+".docx");
-        File file = new ClassPathResource("templates/test01.docx").getFile();
-        XWPFTemplate template = XWPFTemplate.compile(file);
+        InputStream inputStream = new ClassPathResource("templates/test01.docx").getInputStream();
+        XWPFTemplate template = XWPFTemplate.compile(inputStream);
         Map map = new HashMap();
         map.put("title", "Hi, poi-tl Word模板引擎");
         template.render(map);
@@ -102,7 +99,7 @@ public class UserController{
         template.close();
         out.flush();
         out.close();
-        return Result.ok(userService.list());
+        //return Result.ok(userService.list());
     }
 
 
