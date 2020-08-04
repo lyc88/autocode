@@ -3,9 +3,12 @@ import cn.hutool.poi.excel.ExcelUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.deepoove.poi.XWPFTemplate;
 import com.example.demo.bean.ExcelUtils;
 import com.example.demo.bean.Result;
 import com.google.common.collect.Lists;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.ResourceUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,10 @@ import com.example.demo.bean.CommonResultResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +87,21 @@ public class UserController{
 
 
     @RequestMapping("user/list")
-    public Result list(){
+    public Result list(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        String attachName = new String(("测试").getBytes(), "ISO-8859-1");
+        response.setHeader("Content-disposition","attachment;filename="+attachName+".docx");
+        File file = new ClassPathResource("templates/test01.docx").getFile();
+        XWPFTemplate template = XWPFTemplate.compile(file);
+        Map map = new HashMap();
+        map.put("title", "Hi, poi-tl Word模板引擎");
+        template.render(map);
+        OutputStream out = response.getOutputStream();
+
+        template.write(out);
+        template.close();
+        out.flush();
+        out.close();
         return Result.ok(userService.list());
     }
 

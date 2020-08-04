@@ -63,7 +63,7 @@ public class WebLogAspect {
 
             logger.info("browser:{} system:{}", browserName,system);
             String contentType = request.getHeader("content-type");
-            if(contentType.toLowerCase().indexOf(MediaType.APPLICATION_JSON_VALUE) !=-1){
+            if(contentType != null && contentType.toLowerCase().indexOf(MediaType.APPLICATION_JSON_VALUE) !=-1){
                 logger.info("parameters : {}", JSONUtil.toJsonStr(pjp.getArgs()));
             }
             logger.info("content-type:{}",  request.getHeader("content-type"));
