@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.example.demo.test.entity.Link;
-import com.example.demo.test.service.LinkService;
+import com.example.demo.test.entity.Book;
+import com.example.demo.test.service.BookService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -19,14 +19,14 @@ import java.util.List;
 /**
 * 
 * @author lyc
-* @date 2020-08-04 22:54:30
+* @date 2020-08-08 12:57:38
 */
 @Api(value = "",tags={"操作接口"})
 @RestController
-public class LinkController{
+public class BookController{
 
     @Autowired
-    private LinkService linkService;
+    private BookService bookService;
 
     /**
     * 分页查询 size 页大小 current 当前页
@@ -36,32 +36,32 @@ public class LinkController{
     @ApiImplicitParam(name = "size", value = "页大小 默认10", defaultValue = "10"),
     @ApiImplicitParam(name = "current", value = "当前页 默认1", defaultValue = "1")
     })
-    @GetMapping("link/page")
-    public CommonResult<Link> page(@RequestParam(name = "size",defaultValue = "10") Integer size,
+    @GetMapping("book/page")
+    public CommonResult<Book> page(@RequestParam(name = "size",defaultValue = "10") Integer size,
                                                 @RequestParam(name = "current",defaultValue = "1") Integer current){
         Page page = new Page(current,size);
-        IPage result = linkService.page(page);
-        List<Link>  linkList = result.getRecords();
-        return  CommonResultResponse.ok(linkList);
+        IPage result = bookService.page(page);
+        List<Book>  bookList = result.getRecords();
+        return  CommonResultResponse.ok(bookList);
     }
 
     /**
     * 列表
     */
     @ApiOperation(value = "列表",notes = "通用结果返回对象")
-    @GetMapping("link/list")
-    public CommonResult<Link> list(){
-        List<Link> linkList = linkService.list(new QueryWrapper<Link>());
-        return  CommonResultResponse.ok(linkList);
+    @GetMapping("book/list")
+    public CommonResult<Book> list(){
+        List<Book> bookList = bookService.list(new QueryWrapper<Book>());
+        return  CommonResultResponse.ok(bookList);
     }
 
     /**
     *  id删除
     */
     @ApiOperation(value = "id删除",notes = "通用结果返回对象")
-    @PostMapping("link/delete")
+    @PostMapping("book/delete")
     public CommonResult<Boolean> delete(Integer id){
-        Boolean success = linkService.removeById(id);
+        Boolean success = bookService.removeById(id);
         return CommonResultResponse.ok(success);
     }
 
@@ -69,19 +69,19 @@ public class LinkController{
     *  id查询
     */
     @ApiOperation(value = "id查询",notes = "通用结果返回对象")
-    @GetMapping("link/findById")
-    public CommonResult<Link> findById(Integer id){
-        Link link = linkService.getById(id);
-        return CommonResultResponse.ok(link);
+    @GetMapping("book/findById")
+    public CommonResult<Book> findById(Integer id){
+        Book book = bookService.getById(id);
+        return CommonResultResponse.ok(book);
     }
 
      /**
       *  新增
       */
      @ApiOperation(value = "新增",notes = "通用结果返回对象")
-     @PostMapping("link/add")
-     public CommonResult<Boolean> add(Link link){
-        Boolean success = linkService.save(link);
+     @PostMapping("book/add")
+     public CommonResult<Boolean> add(Book book){
+        Boolean success = bookService.save(book);
         return CommonResultResponse.ok(success);
      }
 }

@@ -2,14 +2,14 @@ package com.example.demo.test.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import com.example.demo.test.entity.Link;
+import com.example.demo.test.entity.Book;
 /**
 * 
 *
 * @author lyc
-* @date 2020-08-04 22:54:30
+* @date 2020-08-08 12:57:38
 */
 
-public interface LinkService extends IService<Link>{
+public interface BookService extends IService<Book>{
 
 }

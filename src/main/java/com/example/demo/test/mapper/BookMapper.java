@@ -2,14 +2,14 @@ package com.example.demo.test.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import com.example.demo.test.entity.Link;
+import com.example.demo.test.entity.Book;
 /**
 * 
 *
 * @author lyc
-* @date 2020-08-04 22:54:30
+* @date 2020-08-08 12:57:38
 */
 @Mapper
-public interface LinkMapper extends BaseMapper<Link>{
+public interface BookMapper extends BaseMapper<Book>{
 
 }
