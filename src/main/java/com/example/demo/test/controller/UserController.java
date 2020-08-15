@@ -111,8 +111,8 @@ public class UserController{
         return Result.ok(userService.save(user));
     }
 
-    @RequestMapping("user/update")
-    public Result update(@Validated  User user){
+    @RequestMapping("user/update.html")
+    public Result update(User user){
         return Result.ok();
     }
 }
