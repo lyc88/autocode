@@ -15,15 +15,18 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -73,6 +76,8 @@ public class WebLogAspect {
             Map<String, String[]> parameterMap = request.getParameterMap();
             logger.info("parameterMap : {}", JSONUtil.toJsonStr(parameterMap));
 
+            logger.info("parameters :{}",JSONUtil.toJsonStr(getRequestParams(pjp)));
+
             // 阿里 的序列化 response 有问题 会导致 下载 getOutputStream() has already been called for this response
             //logger.info("parameters : {}", JSON.toJSONString(pjp.getArgs()));
             //方便查找那台服务器报错
@@ -99,4 +104,35 @@ public class WebLogAspect {
             logger.info("耗时:{}秒", (end - start) / 1000);
         }
     }
+
+    /**
+     * 获取入参
+     * @param proceedingJoinPoint
+     *
+     * @return
+     * */
+    private Map<String, Object> getRequestParams(ProceedingJoinPoint proceedingJoinPoint) {
+        Map<String, Object> requestParams = new HashMap<>();
+
+        //参数名
+        String[] paramNames =
+                ((MethodSignature)proceedingJoinPoint.getSignature()).getParameterNames();
+        //参数值
+        Object[] paramValues = proceedingJoinPoint.getArgs();
+
+        for (int i = 0; i < paramNames.length; i++) {
+            Object value = paramValues[i];
+
+            //如果是文件对象
+            if (value instanceof MultipartFile) {
+                MultipartFile file = (MultipartFile) value;
+                value = file.getOriginalFilename();  //获取文件名
+            }
+
+            requestParams.put(paramNames[i], value);
+        }
+
+        return requestParams;
+    }
+
 }
