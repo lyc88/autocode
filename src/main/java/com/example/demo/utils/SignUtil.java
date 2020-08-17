@@ -17,6 +17,8 @@ import java.util.TreeMap;
  * 依次进行HMAC-SHA1和BASE64两步加密后得出的密文。
  *
  * Created by nob.
+ *
+ * https://mp.weixin.qq.com/s/ZCwO32wGvlaAx5Vdl8OJfA
  */
 public class SignUtil {
     protected static Logger logger = LoggerFactory.getLogger(SignUtil.class);
