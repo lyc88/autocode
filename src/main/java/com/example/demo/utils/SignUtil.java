@@ -19,6 +19,8 @@ import java.util.TreeMap;
  * Created by nob.
  *
  * https://mp.weixin.qq.com/s/ZCwO32wGvlaAx5Vdl8OJfA
+ *
+ * https://mp.weixin.qq.com/s/3ed1hyeIcpIRhf8q9sET_Q
  */
 public class SignUtil {
     protected static Logger logger = LoggerFactory.getLogger(SignUtil.class);
