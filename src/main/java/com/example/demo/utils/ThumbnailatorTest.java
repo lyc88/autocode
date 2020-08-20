@@ -22,7 +22,7 @@ public class ThumbnailatorTest {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        ThumbnailatorTest thumbnailatorTest = new ThumbnailatorTest();
+       /* ThumbnailatorTest thumbnailatorTest = new ThumbnailatorTest();
         thumbnailatorTest.test1();
         thumbnailatorTest.test2();
         thumbnailatorTest.test3();
@@ -31,7 +31,10 @@ public class ThumbnailatorTest {
         thumbnailatorTest.test6();
         thumbnailatorTest.test7();
         thumbnailatorTest.test8();
-        thumbnailatorTest.test9();
+        thumbnailatorTest.test9();*/
+
+        Thumbnails.of("D:\\1.png").scale(1f).toFile("d:\\image_100%.jpg");
+
     }
 
     /**

@@ -9,6 +9,7 @@ import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
  * @describe
  *https://blog.csdn.net/m0_37202351/article/details/88841969
  *https://www.jianshu.com/p/45d2bb5729d9
+ * https://www.zhihu.com/question/20462696
  * https://www.zhihu.com/tardis/landing/360/ans/18731073?query=%E8%B0%B7%E6%AD%8C%E4%BB%A4%E7%89%8C%E7%A7%98%E9%92%A5&mid=77c513b889707a8845ddcbb8dd1c2bff&guid=8F6ADAEEFE1A83C495FCFD99F6F714CE.1595920709978
  */
 public class GoogleAuthUtil {
