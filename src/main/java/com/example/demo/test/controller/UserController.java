@@ -7,6 +7,7 @@ import com.deepoove.poi.XWPFTemplate;
 import com.example.demo.bean.ExcelUtils;
 import com.example.demo.bean.Result;
 import com.google.common.collect.Lists;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
 import org.springframework.validation.annotation.Validated;
@@ -27,6 +28,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -110,6 +112,17 @@ public class UserController{
 
     @RequestMapping("user/update.html")
     public Result update(User user){
+        return Result.ok();
+    }
+
+
+    @RequestMapping("jpg")
+    public Result importJpg(MultipartFile file) throws IOException {
+
+        String originalFilename = UUID.randomUUID()+file.getOriginalFilename();
+        File file1 = new File("d:/"+originalFilename);
+        file.transferTo(file1);
+        Thumbnails.of(file1).scale(0.1f).toFile("d:\\"+originalFilename+"_10%.jpg");
         return Result.ok();
     }
 }

@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @date: 2020/8/17 14:50
  * @describe
  */
-@Component
+//@Component
 public class TokenInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired

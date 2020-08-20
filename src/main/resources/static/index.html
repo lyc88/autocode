@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>layui在线调试</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all" >
+
+    <script src="layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+
+    <style>
+        body{margin: 10px;}
+        .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+    </style>
+</head>
+<body>
+
+
+
+
+<form class="layui-form" action="" lay-filter="example">
+
+    <div class="layui-form-item" >
+        <label >图片比例</label>
+        <input type="checkbox" name="pic[100]" title="100%"  checked>
+        <input type="checkbox" name="pic[80]" title="80%" >
+        <input type="checkbox" name="pic[60]" title="60%"  >
+        <input type="checkbox" name="pic[40]" title="40%" >
+        <input type="checkbox" name="pic[20]" title="20%"  >
+        <input type="checkbox" name="pic[10]" title="10%"  >
+    </div>
+
+    <div class="layui-form-item" >
+        <div class="layui-upload">
+            <button type="button" class="layui-btn" id="test1">上传图片</button>
+            <div class="layui-upload-list">
+                <img class="layui-upload-img" id="demo1">
+                <p id="demoText"></p>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+<script>
+    layui.use('upload', function() {
+        var $ = layui.jquery
+            , upload = layui.upload;
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            , url: 'http://localhost:8666/jpg' //改成您自己的上传接口
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    //$('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+              /*  if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }*/
+                layer.msg(res.msg);
+                layer.msg('成功');
+                //上传成功
+            }
+
+        });
+
+        form.render();
+    });
+
+    </script>
+</body>
+</html>
