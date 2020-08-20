@@ -33,7 +33,7 @@ public class ThumbnailatorTest {
         thumbnailatorTest.test8();
         thumbnailatorTest.test9();*/
 
-        Thumbnails.of("D:\\1.png").scale(1f).toFile("d:\\image_100%.jpg");
+        Thumbnails.of("D:\\123.jpg").scale(0.1f).toFile("d:\\123image_10%.jpg");
 
     }
 
