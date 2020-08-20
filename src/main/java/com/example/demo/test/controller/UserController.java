@@ -117,12 +117,12 @@ public class UserController{
 
 
     @RequestMapping("jpg")
-    public Result importJpg(MultipartFile file) throws IOException {
-
+    public Result importJpg(MultipartFile file,String path) throws IOException {
         String originalFilename = UUID.randomUUID()+file.getOriginalFilename();
-        File file1 = new File("d:/"+originalFilename);
+        File file1 = new File(path+""+originalFilename);
         file.transferTo(file1);
-        Thumbnails.of(file1).scale(0.1f).toFile("d:\\"+originalFilename+"_10%.jpg");
+        Thumbnails.of(file1).scale(0.1f).toFile(path+originalFilename+"_10%.jpg");
         return Result.ok();
     }
+
 }

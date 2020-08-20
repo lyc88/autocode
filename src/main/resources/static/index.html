@@ -19,6 +19,12 @@
 
 
 <form class="layui-form" action="" lay-filter="example">
+    <div class="layui-form-item">
+        <label class="layui-form-label">盘符</label>
+        <div class="layui-input-block">
+            <input type="text" name="path" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+    </div>
 
     <div class="layui-form-item" >
         <label >图片比例</label>
@@ -52,7 +58,7 @@
         //普通图片上传
         var uploadInst = upload.render({
             elem: '#test1'
-            , url: 'http://localhost:8666/jpg' //改成您自己的上传接口
+            , url: 'http://localhost:8666/jpg?path='+$("#path").val() //改成您自己的上传接口
             , done: function (res) {
                 layer.msg(res.msg);
                 layer.msg('成功');
