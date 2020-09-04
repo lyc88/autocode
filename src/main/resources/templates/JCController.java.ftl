@@ -1,14 +1,13 @@
 package ${package}.${moduleName}.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.demo.bean.PageVO;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import ${package}.${moduleName}.entity.${table.className};
-import ${package}.${moduleName}.service.${table.className}Service;
+import com.example.demo.bean.Result;
+import com.example.demo.test.entity.*;
+import ${package}.${moduleName}.entity.${table.className}DO;
+import ${package}.${moduleName}.service.impl.${table.className}Service;
 <#if swaggerEnable==true>
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Api;
@@ -36,11 +35,10 @@ public class ${table.className}Controller{
     *  ${table.tableComment} 分页查询
     */
     @ApiOperation("${table.tableComment}分页列表")
-    @ApiVersion(API.V1)
     @GetMapping("/page/${table.attrName}")
-    public Result<ExternalPage<${table.className}DO>> page${table.className}(${table.className}QueryReqVO ${table.attrName}QueryReqVO){
-
-        return new Result(RETURN_CODE_100200);
+    public Result<PageVO<${table.className}DO>> page${table.className}(${table.className}QueryDTO ${table.attrName}QueryDTO){
+        PageVO page = ${table.attrName}Service.page${table.className}(${table.attrName}QueryDTO);
+        return Result.ok(page);
     }
 
 
@@ -48,34 +46,31 @@ public class ${table.className}Controller{
     /**
     *  id删除
     */
-    @ApiOperation(value = "id删除")
-    @ApiVersion(API.V1)
-    @DeleteMapping("/delete/${table.className}ById")
-    public Result delete(${table.className}DeleteReqVO ${table.attrName}DeleteReqVO ){
-
-        return new Result(RETURN_CODE_100200);
+    @ApiOperation(value = "${table.tableComment}id删除")
+    @DeleteMapping("/delete/${table.attrName}ById")
+    public Result delete(${table.className}DeleteDTO ${table.attrName}DeleteDTO ){
+        boolean result = ${table.attrName}Service.delete${table.className}(${table.attrName}DeleteDTO);
+        return Result.ok(result);
     }
 
 
     /**
     *  ${table.tableComment}更新
     */
-    @ApiOperation(value = "${table.className}更新")
-    @ApiVersion(API.V1)
-    @PutMapping("/update/${table.className}")
-    public Result update(${table.className}DeleteReqVO ${table.attrName}DeleteReqVO ){
-
-        return new Result(RETURN_CODE_100200);
+    @ApiOperation(value = "${table.tableComment}更新")
+    @PutMapping("/update/${table.attrName}")
+    public Result update(${table.className}UpdateDTO ${table.attrName}UpdateDTO ){
+        boolean result = ${table.attrName}Service.update${table.className}(${table.attrName}UpdateDTO);
+        return Result.ok(result);
     }
 
     /**
     *  ${table.tableComment}添加
     */
-    @ApiOperation(value = "${table.className}添加")
-    @ApiVersion(API.V1)
-    @PostMapping("/add/${table.className}ById")
-    public Result add(${table.className}DeleteReqVO ${table.attrName}DeleteReqVO ){
-
-        return new Result(RETURN_CODE_100200);
+    @ApiOperation(value = "${table.tableComment}添加")
+    @PostMapping("/add/${table.attrName}")
+    public Result add(${table.className}AddDTO ${table.attrName}AddDTO ){
+        boolean result = ${table.attrName}Service.add${table.className}(${table.attrName}AddDTO);
+        return Result.ok(result);
     }
 }

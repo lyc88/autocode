@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 </#if>
 import java.util.Date;
+import lombok.Data;
 
 
 
@@ -14,7 +15,8 @@ import java.util.Date;
 * @author ${author}
 * @date ${datetime}
 */
-public class ${table.className}QueryReqVO{
+@Data
+public class ${table.className}QueryDTO{
 <#list table.columns as column>
     /**
     * ${column.columnComment}

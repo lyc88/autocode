@@ -26,7 +26,7 @@ public class Constant {
     /**
      * 是否开启  swagger2
      */
-    @Value(value = "${swagger.enable:false}")
+    @Value(value = "${swagger.enable:true}")
     private Boolean swaggerEnable;
 
 

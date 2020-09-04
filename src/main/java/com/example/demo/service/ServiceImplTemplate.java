@@ -19,7 +19,7 @@ import java.util.Map;
  * @author lyc
  * @date 2019/10/28.
  */
-//@Service
+@Service
 public class ServiceImplTemplate implements CodeTemplate {
 
     @Autowired
@@ -61,7 +61,7 @@ public class ServiceImplTemplate implements CodeTemplate {
             TableEntity table = (TableEntity) data.get("table");
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
-            FileUtils.write(new File(parentPath+packPathName+serviceImplPath+table.getClassName()+"ServiceImpl.java"),result,"utf-8");
+            FileUtils.write(new File(parentPath+packPathName+serviceImplPath+table.getClassName()+"Service.java"),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {

@@ -20,7 +20,7 @@ import lombok.Data;
 */
 @Data
 @TableName("${table.tableName}")
-public class ${table.className}{
+public class ${table.className}DO{
 <#list table.columns as column>
     /**
     * ${column.columnComment}

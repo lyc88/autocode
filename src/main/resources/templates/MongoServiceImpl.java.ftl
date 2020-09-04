@@ -11,22 +11,22 @@ import ${package}.${moduleName}.mapper.${table.className}Mapper;
 * @describe ${table.tableComment}${table.tableComment}
 */
 @Service
-public class ${table.className}ServiceImpl extends BaseServiceImpl<${table.className}DO> implements  ${table.className}Service{
+public class ${table.className}Service extends BaseServiceImpl<${table.className}DO> {
 
-    boolean add${table.className}(${table.className}AddReqVO ${table.attrName}AddReqVO){
+    boolean add${table.className}(${table.className}AddReqVO ${table.attrName}AddDTO){
         return true;
     }
 
-    boolean update${table.className}(${table.className}UpdateReqVO ${table.attrName}UpdateReqVO){
+    boolean update${table.className}(${table.className}UpdateReqVO ${table.attrName}UpdateDTO){
         return true;
     }
 
 
-    Page page${table.className}(${table.className}QueryReqVO ${table.attrName}QueryReqVO){
+    Page page${table.className}(${table.className}QueryReqVO ${table.attrName}QueryDTO){
         return null;
     }
 
-    boolean delete${table.className}(${table.className}DeleteReqVO ${table.attrName}DeleteReqVO){
+    boolean delete${table.className}(${table.className}DeleteReqVO ${table.attrName}DeleteDTO){
         return true;
     }
 }

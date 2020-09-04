@@ -6,6 +6,7 @@ import com.example.demo.service.AutoCode;
 import com.example.demo.service.MysqlAutoService;
 import com.example.demo.test.service.UserService;
 import freemarker.template.TemplateException;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.reflections.Reflections;
@@ -36,8 +37,8 @@ public class AutocodeTests {
     private UserService userService;
     @Test
     public void contextLoads() throws Exception {
-       // autoCode.autoCode("t_user_platform_info");
-       // userService.saveU(null);
+        autoCode.autoCode("sso_login_log");
+        // userService.saveU(null);
        /* DateTime endTime = DateUtil.endOfDay(new Date());
         DateTime startTime = DateUtil.beginOfDay(new Date());
         System.out.println(" time "+endTime.getTime());

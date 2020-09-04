@@ -14,7 +14,8 @@ import lombok.Data;
 * @author ${author}
 * @date ${datetime}
 */
-public class ${table.className}UpdateReqVO{
+@Data
+public class ${table.className}UpdateDTO{
 <#list table.columns as column>
     /**
     * ${column.columnComment}
