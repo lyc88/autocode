@@ -7,6 +7,7 @@ import com.example.demo.utils.CharUtil;
 import com.google.common.collect.Lists;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.reflections.Reflections;
@@ -37,6 +38,32 @@ public class AutocodeTests {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
+
+    @Test
+    public void syncSend() {
+
+        // 同步发送消息
+        rocketMQTemplate.syncSend("DEMO_01", "hello");
+    }
+
+    /*public void asyncSend(Integer id, SendCallback callback) {
+        // 创建 Demo01Message 消息
+        Demo01Message message = new Demo01Message();
+        message.setId(id);
+        // 异步发送消息
+        rocketMQTemplate.asyncSend(Demo01Message.TOPIC, message, callback);
+    }
+
+    public void onewaySend(Integer id) {
+        // 创建 Demo01Message 消息
+        Demo01Message message = new Demo01Message();
+        message.setId(id);
+        // oneway 发送消息
+        rocketMQTemplate.sendOneWay(Demo01Message.TOPIC, message);
+    }
+*/
     @Test
     public void contextLoads() throws IOException, TemplateException {
         mysqlAutoService.autoCode("book");
@@ -49,6 +76,7 @@ public class AutocodeTests {
         Arrays.stream(roots).forEach(e->list(e));
         //list(file);
         System.out.println(count);
+        bookService.saveBatch(books);
     }
 
     public static int count = 0;
@@ -66,13 +94,19 @@ public class AutocodeTests {
             book.setPath(file.getAbsolutePath());
             book.setImg("");
             book.setType(name.substring(name.lastIndexOf(".")));
-            book.setSize((int)file.getTotalSpace()/1024);
+            boolean b = file.getTotalSpace()>1024L;
+            if(b){
+                book.setSize((int)(file.length()/1024L));
+            }else {
+                book.setSize(0);
+            }
+
             books.add(book);
 
             //System.out.println(file.getAbsolutePath());
             count++;
         }
-        bookService.saveBatch(books);
+
         return null;
     }
     @Test

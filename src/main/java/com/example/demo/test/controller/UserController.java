@@ -118,7 +118,13 @@ public class UserController{
     }
 
     @RequestMapping("user/update")
-    public Result update(@Validated  User user){
+    public Result<String> update(/*@Validated  User user*/){
+        //return new Result<>(1,"s",null);
         return Result.ok();
+    }
+
+    @RequestMapping("user/get")
+    public com.example.demo.bean.User get(/*@Validated  User user*/){
+     return new com.example.demo.bean.User();
     }
 }
