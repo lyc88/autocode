@@ -1,4 +1,6 @@
 package com.example.demo.test.controller;
+import java.math.BigDecimal;
+import java.util.Date;
 import cn.hutool.poi.excel.ExcelUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -6,6 +8,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.deepoove.poi.XWPFTemplate;
 import com.example.demo.bean.ExcelUtils;
 import com.example.demo.bean.Result;
+import com.example.demo.test.Hello;
+import com.example.demo.test.entity.TestUser;
 import com.google.common.collect.Lists;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
@@ -108,8 +112,22 @@ public class UserController{
         return Result.ok(userService.save(user));
     }
 
+   /* @Autowired
+    private Hello hello;
     @RequestMapping("user/update.html")
     public Result update(User user){
-        return Result.ok();
+        return Result.ok(hello.getAa());
+    }*/
+
+
+
+    @RequestMapping("user/update.html")
+    public Result getUserList(){
+        TestUser testUser = new TestUser();
+        testUser.setBigDecimal(new BigDecimal("0"));
+        testUser.setDate(new Date());
+
+
+        return Result.ok(testUser);
     }
 }

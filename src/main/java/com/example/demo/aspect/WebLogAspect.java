@@ -57,6 +57,8 @@ public class WebLogAspect {
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 
             HttpServletRequest request = attributes.getRequest();
+            String serverName = request.getServerName();
+
             String ua = request.getHeader("User-Agent");
             UserAgent userAgent = UserAgent.parseUserAgentString(ua);
             Browser browser = userAgent.getBrowser();
