@@ -38,7 +38,7 @@ public class SimpleCanalClientTest  {
         int emptyCount = 0;
         try {
             connector.connect();
-            connector.subscribe(".*\\..*");
+            connector.subscribe("goods\\..*");
             connector.rollback();
             int totalEmptyCount = 120;
             //emptyCount < totalEmptyCount

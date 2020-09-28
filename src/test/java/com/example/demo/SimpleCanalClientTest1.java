@@ -26,12 +26,13 @@ public class SimpleCanalClientTest1 {
     public static void main(String args[]) {
         // 创建链接
         CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("192.168.254.102",
-                11111), "example1", "", "");
+                11111), "example", "", "");
         int batchSize = 1000;
         int emptyCount = 0;
         try {
             connector.connect();
-            connector.subscribe(".*\\..*");
+            connector.subscribe("goods\\..*");
+            //connector.subscribe(".*\\..*");
             connector.rollback();
             int totalEmptyCount = 120;
             //emptyCount < totalEmptyCount
