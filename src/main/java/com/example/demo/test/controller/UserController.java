@@ -26,6 +26,7 @@ import com.example.demo.bean.CommonResult;
 import com.example.demo.bean.CommonResultResponse;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.HashMap;
@@ -122,12 +123,12 @@ public class UserController{
 
 
     @RequestMapping("user/update.html")
-    public Result getUserList(){
+    public Result getUserList(String name, HttpServletRequest httpServletRequest){
         TestUser testUser = new TestUser();
         testUser.setBigDecimal(new BigDecimal("0"));
         testUser.setDate(new Date());
 
-
+        System.out.println(httpServletRequest.getParameter("name"));
         return Result.ok(testUser);
     }
 }

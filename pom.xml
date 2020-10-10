@@ -46,7 +46,7 @@
 		<hutool.version>5.3.7</hutool.version>
 		<guava.version>27.0.1-jre</guava.version>
 		<user.agent.version>1.20</user.agent.version>
-
+		<revision>1.0-SNAPSHOT</revision>
 	</properties>
 
 	<dependencies>
@@ -244,7 +244,26 @@
 			<version>1.8.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.jctech</groupId>
+			<artifactId>jctech-boot-canal</artifactId>
+			<version>${revision}</version>
+		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
+			<dependency>
+				<groupId>com.jctech</groupId>
+				<artifactId>jctech-framework-boot-parent</artifactId>
+				<version>${revision}</version>
+				<!-- 所有依赖包的版本控制统一 -->
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
