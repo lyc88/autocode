@@ -1,3 +1,4 @@
+/*
 package com.example.demo.test.controller;
 
 
@@ -6,11 +7,13 @@ import com.jctech.framework.boot.canal.annotation.CanalListener;
 import com.jctech.framework.boot.canal.entity.Canal;
 import com.jctech.framework.boot.canal.enums.EventTypeEnum;
 
+*/
 /**
  * @author lyc
  * @date 2020/10/9 19:32
  * @describe
- */
+ *//*
+
 @CanalListener(table = {"t_user"})
 public class CanalListeneraaaa {
 
@@ -40,3 +43,4 @@ public class CanalListeneraaaa {
         System.out.println(canal);
     }
 }
+*/

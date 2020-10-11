@@ -1,3 +1,6 @@
+
+
+
 package com.example.demo.aspect;
 
 import com.example.demo.utils.ApiUtil;
@@ -14,18 +17,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.concurrent.TimeUnit;
 
+
+
+
 /**
  * @author: lyc
  * @date: 2020/8/17 14:50
  * @describe
  */
+
+
+
 @Component
 public class TokenInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     private RedisTemplate redisTemplate;
 
-    /**
+
+
+
+/**
      *
      * @param request
      * @param response
@@ -33,6 +45,9 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
      * @return
      * @throws Exception
      */
+
+
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = request.getHeader("token");
@@ -73,3 +88,5 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
         return super.preHandle(request, response, handler);
     }
 }
+
+

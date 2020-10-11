@@ -1,3 +1,4 @@
+/*
 package com.example.demo.test.controller;
 
 
@@ -20,11 +21,13 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+*/
 /**
  * @author: lyc
  * @date: 2020/8/17 14:48
  * @describe
- */
+ *//*
+
 @Slf4j
 @RestController
 @RequestMapping("/api/token")
@@ -33,12 +36,14 @@ public class TokenController {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    /**
+    */
+/**
      * API Token
      *
      * @param sign
      * @return
-     */
+     *//*
+
     @PostMapping("/api_token")
     public Result<AccessToken> apiToken(String appId, @RequestHeader("timestamp") String timestamp, @RequestHeader("sign") String sign) {
         Assert.isTrue(!StringUtils.isEmpty(appId) && !StringUtils.isEmpty(timestamp) && !StringUtils.isEmpty(sign), "参数错误");
@@ -117,3 +122,4 @@ public class TokenController {
         System.out.println(sign);
     }
 }
+*/
