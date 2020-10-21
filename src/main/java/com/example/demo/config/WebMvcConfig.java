@@ -13,6 +13,10 @@ import java.util.List;
  * link https://blog.csdn.net/qq_38132283/article/details/89339817
  *
  * https://www.jianshu.com/p/2af1104a1b5d
+ *
+ *https://blog.csdn.net/qq_31183727/article/details/99539115
+ * fastjson
+ * https://blog.csdn.net/qq_31183727/article/details/88890999
  */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {

@@ -56,7 +56,7 @@ public class LinkController{
         List<Link> linkList = null;Lists.newArrayList();
        // Link link = new Link();
        // linkList.add(link);
-        return  CommonResultResponse.ok(linkList);
+        return  CommonResultResponse.ok(null);
     }
 
     /**
