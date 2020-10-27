@@ -11,6 +11,7 @@ import com.example.demo.service.MysqlAutoService;
 import com.example.demo.test.entity.Item;
 import com.example.demo.test.entity.ItemRepository;
 import com.example.demo.test.entity.TestUser;
+import com.example.demo.test.mapper.UserMapper;
 import com.example.demo.test.service.UserService;
 import freemarker.template.TemplateException;
 import org.apache.commons.compress.utils.Lists;
@@ -48,6 +49,8 @@ public class AutocodeTests {
     private AutoCode autoCode;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserMapper userMapper;
     @Test
     public void contextLoads() throws Exception {
         //autoCode.autoCode("salesman");
@@ -67,7 +70,7 @@ public class AutocodeTests {
         String d = DateUtil.format(new Date(dateTime.getTime()), "yyyy-MM-dd HH:mm:ss");
         System.out.println(d);
         System.out.println((System.currentTimeMillis()+"").length());*/
-        TestUser testUser = new TestUser();
+      /*  TestUser testUser = new TestUser();
 
         testUser.setBigDecimal(new BigDecimal("12"));
 
@@ -75,7 +78,13 @@ public class AutocodeTests {
         TestUser testUser1 = JSON.parseObject(jsonString, TestUser.class);
 
         JSONObject jsonObject = JSON.parseObject(jsonString);
-        System.out.println(jsonString);
+        System.out.println(jsonString);*/
+        Map<String, Object> params = new HashMap<>();
+        params.put("userId", 12345);
+        params.put("accountType", 1);
+        Map<String, Object> stringObjectMap = userMapper.selectDeviceToken(params);
+        System.out.println(stringObjectMap);
+
 
     }
 

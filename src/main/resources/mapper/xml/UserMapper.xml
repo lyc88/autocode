@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.test.mapper.User">
+<mapper namespace="com.example.demo.test.mapper.UserMapper">
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.example.demo.test.entity.User">
           <id column="id" property="id" />
@@ -11,4 +11,14 @@
     <sql id="BaseColumn">
       id, name, age
     </sql>
+
+    <select id="selectDeviceToken" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT
+			id,user_id,platform,account_type,device_token,language_type,send_status
+		FROM
+			msg_user_device
+		WHERE
+			user_id = #{userId} and  account_type = #{accountType}
+			and disable_status=0 and delete_status=0  ORDER BY last_update_time DESC limit 1
+	</select>
 </mapper>
