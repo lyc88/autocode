@@ -53,10 +53,61 @@ public class LinkController{
     @GetMapping("link/list")
     public CommonResult<List<Link>> list(){
         //List<Link> linkList = linkService.list(new QueryWrapper<Link>());
-        List<Link> linkList = null;Lists.newArrayList();
+        List<String> linkList = Lists.newArrayList();
+        String s = "spring boot 设置 gzip 压缩\n" +
+                " \n" +
+                "\n" +
+                " \n" +
+                "\n" +
+                "为了减少数据在网络中的传输量，从而减少传输时长，增加用户体验，浏览器大都是支持Gzip压缩技术的，http的请求头 Accept-Encoding:gzip, deflate 就表示这次请求可以接受Gzip压缩后的数据，图片不要进行压缩，因为图片完全可以在项目开发中使用压缩后的图片。压缩会有一定的CPU性能损耗。\n" +
+                "\n" +
+                "下面介绍几种 Gzip压缩方式\n" +
+                "\n" +
+                "1.SpringBoot开启Gzip压缩\n" +
+                "\n" +
+                "\n" +
+                "在application.properties中加入如下配置：\n" +
+                "\n" +
+                "server.compression.enabled=true\n" +
+                "server.compression.mime-types=application/javascript,text/css,application/json,application/xml,text/html,text/xml,text/plain\n" +
+                "\n" +
+                " \n" +
+                "\n" +
+                "或者在application.yml 中加入如下配置：\n" +
+                "\n" +
+                "server:\n" +
+                "  compression:\n" +
+                "    enabled: true\n" +
+                "    mime-types: application/javascript,text/css,application/json,application/xml,text/html,text/xml,text/plain\n" +
+                "\n" +
+                " \n" +
+                "\n" +
+                " \n" +
+                "\n" +
+                "压缩后文件大概有5-8倍左右的差距，能大大减少网络传输量，页面加载速度加快\n" +
+                "\n" +
+                " \n" +
+                "\n" +
+                "2.Tomcat开启Gzip压缩\n" +
+                "tomcat中使用gzip需要进行配置，在server.xml中，在Connector标签中加入如下属性\n" +
+                "\n" +
+                "compression=\"on\"\n" +
+                "compressionMinSize=\"2048\"\n" +
+                "compressableMimeType=\"text/html,text/css,text/javascript\"\n" +
+                "\n" +
+                "\n" +
+                " \n" +
+                "\n" +
+                "下面我们对比一下没有开启gzip压缩和开启gzip压缩的传输量\n" +
+                "\n" +
+                " ";
        // Link link = new Link();
        // linkList.add(link);
-        return  CommonResultResponse.ok(null);
+        linkList.add(s);
+        linkList.add(s);
+        linkList.add(s);
+        linkList.add(s);
+        return  CommonResultResponse.ok(linkList);
     }
 
     /**

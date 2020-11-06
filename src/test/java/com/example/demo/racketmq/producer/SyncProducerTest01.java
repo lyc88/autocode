@@ -33,7 +33,7 @@ public class SyncProducerTest01 {
 
         }
         // 如果不再发送消息，关闭Producer实例。
-        producer.shutdown();
+        //producer.shutdown();
     }
 
 }
