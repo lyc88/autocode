@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.deepoove.poi.XWPFTemplate;
+
+import com.example.demo.aspect.LogAnno;
 import com.example.demo.bean.ExcelUtils;
 import com.example.demo.bean.Result;
 import com.example.demo.test.Hello;
@@ -130,5 +132,12 @@ public class UserController{
 
         System.out.println(httpServletRequest.getParameter("name"));
         return Result.ok(testUser);
+    }
+
+    @RequestMapping("user/log")
+    public Result testLog(){
+        String ttt = userService.ttt();
+
+        return Result.ok(ttt);
     }
 }

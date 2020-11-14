@@ -2,6 +2,7 @@ package com.example.demo.test.service.impl;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.demo.aspect.LogAnno;
 import org.springframework.stereotype.Service;
 import com.example.demo.test.entity.User;
 import com.example.demo.test.service.UserService;
@@ -36,5 +37,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements  Us
             throw new Exception("hhhe");
         }
         return false;
+    }
+
+
+    @LogAnno(typeExpression = "#{@userServiceImpl.x(#root)}")
+    public String ttt() {
+        System.out.println("业务逻辑");
+        return "ttt返回值";
+    }
+    //最终要执行该方法
+    public String x(String res) {
+        System.out.println("获取的值"+res);
+        return res+"-x返回值";
     }
 }

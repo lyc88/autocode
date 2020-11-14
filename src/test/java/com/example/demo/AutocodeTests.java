@@ -53,7 +53,7 @@ public class AutocodeTests {
     private UserMapper userMapper;
     @Test
     public void contextLoads() throws Exception {
-        //autoCode.autoCode("salesman");
+         autoCode.autoCode("order_status");
         // userService.saveU(null);
        /* DateTime endTime = DateUtil.endOfDay(new Date());
         DateTime startTime = DateUtil.beginOfDay(new Date());
@@ -79,11 +79,11 @@ public class AutocodeTests {
 
         JSONObject jsonObject = JSON.parseObject(jsonString);
         System.out.println(jsonString);*/
-        Map<String, Object> params = new HashMap<>();
+      /*  Map<String, Object> params = new HashMap<>();
         params.put("userId", 12345);
         params.put("accountType", 1);
         Map<String, Object> stringObjectMap = userMapper.selectDeviceToken(params);
-        System.out.println(stringObjectMap);
+        System.out.println(stringObjectMap);*/
 
 
     }
