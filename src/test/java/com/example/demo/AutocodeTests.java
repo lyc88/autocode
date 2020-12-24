@@ -66,7 +66,7 @@ public class AutocodeTests {
 */
     @Test
     public void contextLoads() throws IOException, TemplateException {
-        mysqlAutoService.autoCode("book");
+        mysqlAutoService.autoCode("ant_rel_pay_setting");
     }
 
     @Test
