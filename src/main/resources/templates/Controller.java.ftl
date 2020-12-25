@@ -21,7 +21,7 @@ public class ${table.className}Controller{
     private ${table.className}Service ${table.attrName}Service;
 
     /**
-    * 分页查询 size 页大小 current 当前页
+    * 分页查询 size 页大小 page 当前页
     */
     @OperateLog(description = "分页${table.tableComment} 列表")
     @GetMapping("${table.attrName}/page")
