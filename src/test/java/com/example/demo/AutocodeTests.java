@@ -70,7 +70,7 @@ public class AutocodeTests {
 */
     @Test
     public void contextLoads() throws IOException, TemplateException {
-        autoCode.autoCode("ant_category");
+        autoCode.autoCode("ant_area");
     }
 
     @Test
