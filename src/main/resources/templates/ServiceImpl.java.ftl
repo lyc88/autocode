@@ -1,10 +1,9 @@
 package ${package}.${moduleName}.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
 import org.springframework.stereotype.Service;
-import ${package}.${moduleName}.entity.${table.className};
-import ${package}.${moduleName}.service.${table.className}Service;
-import ${package}.${moduleName}.mapper.${table.className}Mapper;
+import com.yi.chuan.common.core.AbstractService;
+import ${package}.${moduleName}.entity.${table.className}PO;
 /**
 * ${table.tableComment}
 *
@@ -12,6 +11,28 @@ import ${package}.${moduleName}.mapper.${table.className}Mapper;
 * @date ${datetime}
 */
 @Service
-public class ${table.className}ServiceImpl extends ServiceImpl<${table.className}Mapper,${table.className}> implements  ${table.className}Service{
+public class ${table.className}ServiceImpl extends AbstractService<${table.className}PO> implements  ${table.className}Service{
 
+    @Override
+    public PageListForYAPI page(${table.className}ListRequest request){
+
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public Boolean delete(${table.className}DeleteRequest request){
+
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public Boolean add(${table.className}AddRequest request){
+
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public Boolean edit(${table.className}EditRequest request){
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.service.AutoCode;
 import com.example.demo.service.MysqlAutoService;
 import com.example.demo.test.entity.Book;
 import com.example.demo.test.service.BookService;
@@ -32,8 +33,11 @@ import java.util.Set;
 @SpringBootTest
 public class AutocodeTests {
 
+    /*@Autowired
+    private MysqlAutoService mysqlAutoService;*/
+
     @Autowired
-    private MysqlAutoService mysqlAutoService;
+    private AutoCode autoCode;
 
     @Autowired
     private BookService bookService;
@@ -66,7 +70,7 @@ public class AutocodeTests {
 */
     @Test
     public void contextLoads() throws IOException, TemplateException {
-        mysqlAutoService.autoCode("ant_rel_pay_setting");
+        autoCode.autoCode("ant_category");
     }
 
     @Test

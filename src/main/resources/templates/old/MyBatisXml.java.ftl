@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="${package}.${moduleName}.mapper.${table.className}Mapper">
+<mapper namespace="${package}.${moduleName}.mapper.${table.className}">
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="${package}.${moduleName}.entity.${table.className}PO">
+    <resultMap id="BaseResultMap" type="${package}.${moduleName}.entity.${table.className}">
     <#list table.columns as column>
        <#if column.columnKey=="PRI">
           <id column="${column.columnName}" property="${column.attrName}" />

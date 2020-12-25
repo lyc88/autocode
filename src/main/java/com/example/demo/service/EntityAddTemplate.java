@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2019/10/28.
  */
 @Service
-public class EntityTemplate implements CodeTemplate {
+public class EntityAddTemplate implements CodeTemplate {
 
     @Autowired
     Configuration configuration;
@@ -49,7 +49,7 @@ public class EntityTemplate implements CodeTemplate {
 
     public Template getTemplate() {
         try {
-            return configuration.getTemplate("Entity.java.ftl");
+            return configuration.getTemplate("EntityAddRequest.java.ftl");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,7 +62,7 @@ public class EntityTemplate implements CodeTemplate {
             TableEntity table = (TableEntity) data.get("table");
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
-            FileUtils.write(new File(parentPath+packPathName+entityPath+table.getClassName()+"PO.java"),result,"utf-8");
+            FileUtils.write(new File(parentPath+packPathName+entityPath+table.getClassName()+"AddRequest.java"),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {
