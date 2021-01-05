@@ -24,7 +24,7 @@ public class ${table.className}Controller{
     * 分页查询 size 页大小 page 当前页
     */
     @OperateLog(description = "分页${table.tableComment} 列表")
-    @GetMapping("${table.attrName}/page")
+    @PostMapping("${table.attrName}/page")
     public Result<PageListForYAPI<${table.className}PO>> page(${table.className}ListRequest request){
         PageListForYAPI<${table.className}PO> page${table.className} = ${table.attrName}Service.page(request);
         return  ResultGenerator.genSuccessResult(page${table.className});

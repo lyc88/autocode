@@ -8,9 +8,9 @@ import com.example.demo.bean.*;
 import com.example.demo.test.entity.AntArea;
 import com.example.demo.test.entity.AntCategory;
 import com.example.demo.test.entity.AntQualificationType;
-import com.example.demo.test.service.AntAreaService;
-import com.example.demo.test.service.AntCategoryService;
-import com.example.demo.test.service.AntQualificationTypeService;
+/*import com.example.demo.test.service.AntAreaService;
+import com.example.demo.test.service.AntCategoryService;*/
+
 import com.google.common.collect.Lists;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -57,7 +57,7 @@ public class UserController{
         ExcelUtils.exportExcel(httpServletResponse,"用户列表",rows);
     }
 
-    @Autowired
+   /* @Autowired
     private AntAreaService antAreaService;
 
     @RequestMapping("antArea/import")
@@ -212,8 +212,8 @@ public class UserController{
         antCategoryService.saveBatch(antCategories);
        // System.out.println(antCategoryDTOS);
     }
-
-    @Autowired
+*/
+   /* @Autowired
     private AntQualificationTypeService antQualificationTypeService;
 
     @RequestMapping("antQualificationType/import")
@@ -234,7 +234,7 @@ public class UserController{
             antQualificationTypes.add(antQualificationType);
         });
         antQualificationTypeService.saveBatch(antQualificationTypes);
-    }
+    }*/
 
     @RequestMapping("user/import")
     public Result importUser(MultipartFile file){
