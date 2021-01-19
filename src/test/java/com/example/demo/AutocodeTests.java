@@ -6,6 +6,7 @@ import com.example.demo.test.entity.Book;
 import com.example.demo.test.service.BookService;
 import com.example.demo.utils.CharUtil;
 import com.google.common.collect.Lists;
+import com.show.api.ShowApiRequest;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
@@ -70,7 +71,15 @@ public class AutocodeTests {
 */
     @Test
     public void contextLoads() throws IOException, TemplateException {
-        autoCode.autoCode("ant_qualification_type");
+        autoCode.autoCode("service_area_epidemic");
+    }
+
+
+    @Test
+    public void testApi(){
+        String res = new ShowApiRequest("http://route.showapi.com/2217-2","125305","13fb9deeb2384d27aea96a26f7d8829e")
+                .post();
+        System.out.println(res);
     }
 
     @Test
