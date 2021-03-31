@@ -19,7 +19,7 @@ public @interface CacheKey {
      *
      * @return
      */
-    String key() default "cacheKey:";
+    String key() default "cacheKey";
 
     /**
      * 缓存过期时间，默认3分钟

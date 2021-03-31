@@ -76,7 +76,7 @@ public class QueryCacheAspect {
                     ParameterCacheKey parameterCacheKey = (ParameterCacheKey) paramAnn;
                     //取到ParameterCacheKey的标识参数的值
                     Object fieldValue = AOPMethodUtil.getParamValue(joinPoint, parameterCacheKey.fieldName());
-                    realKey.append("_").append(parameterCacheKey.fieldName()).append("_").append(fieldValue);
+                    realKey.append(":").append(parameterCacheKey.fieldName()).append(":").append(fieldValue);
                     break;
                 }
             }
@@ -86,7 +86,7 @@ public class QueryCacheAspect {
         if (StringUtils.isBlank(realKey.toString())) throw new RuntimeException("****缓存key值不存在****");
         // 如果没有 ParameterCacheKey 注解 默认md5(类名+方法+参数)
         if ((Objects.equals(realKey.toString(), key))) {
-            realKey.append("_").append(getKey(signature, joinPoint.getArgs()));
+            realKey.append(":").append(getKey(signature, joinPoint.getArgs()));
         }
         log.debug("获取到缓存key值 {} ", realKey);
         boolean hasKey = redisTemplate.hasKey(realKey.toString());
