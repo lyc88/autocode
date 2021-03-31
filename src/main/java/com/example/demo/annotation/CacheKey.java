@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 注解 AOPCacheKey 是方法级别的注解，用来标注要查询数据的主键，会nameSpace组合做缓存的key值
+ * 注解
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})

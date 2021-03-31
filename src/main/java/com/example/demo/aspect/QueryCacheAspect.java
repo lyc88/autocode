@@ -54,7 +54,6 @@ public class QueryCacheAspect {
     @Around("queryCachePointcut()")
     public Object interceptor(ProceedingJoinPoint joinPoint) throws Throwable {
         long beginTime = System.currentTimeMillis();
-        log.info("------- 进入 AOP 缓存切面处理 ------- ");
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         //获取被拦截的方法
         Method method = signature.getMethod();
@@ -86,20 +85,20 @@ public class QueryCacheAspect {
         //获取不到key值，抛异常
         if (StringUtils.isBlank(realKey.toString())) throw new RuntimeException("****缓存key值不存在****");
         // 如果没有 ParameterCacheKey 注解 默认md5(类名+方法+参数)
-        if((Objects.equals(realKey.toString(),key))){
-            realKey.append("_").append(getKey(signature,joinPoint.getArgs()));
+        if ((Objects.equals(realKey.toString(), key))) {
+            realKey.append("_").append(getKey(signature, joinPoint.getArgs()));
         }
-        log.info("获取到缓存key值 {} " , realKey);
+        log.debug("获取到缓存key值 {} ", realKey);
         boolean hasKey = redisTemplate.hasKey(realKey.toString());
         if (hasKey) {
             // 根据对应操作
-            if(Objects.equals(cacheEvent,CacheEvent.QUERY)){
+            if (Objects.equals(cacheEvent, CacheEvent.QUERY)) {
                 // 缓存中获取到数据，直接返回。
                 Object object = redisTemplate.opsForValue().get(realKey.toString());
-                log.info("-------- 缓存命中 ------- 耗时：" + (System.currentTimeMillis() - beginTime));
+                log.debug("缓存命中耗时：{}", (System.currentTimeMillis() - beginTime));
                 return object;
             }
-            if(Objects.equals(cacheEvent,CacheEvent.DELETE)){
+            if (Objects.equals(cacheEvent, CacheEvent.DELETE)) {
                 // 缓存中获取到数据，直接返回。
                 redisTemplate.delete(realKey.toString());
             }
@@ -107,17 +106,23 @@ public class QueryCacheAspect {
 
         Object object = joinPoint.proceed();
         //设置缓存
-        if(Objects.equals(cacheEvent,CacheEvent.QUERY)){
+        if (Objects.equals(cacheEvent, CacheEvent.QUERY)) {
             redisTemplate.opsForValue().set(realKey.toString(), object, cacheKey.expireTime(),
                     cacheKey.timeUnit());
         }
 
-        log.info("-------- 结束耗时：" + (System.currentTimeMillis() - beginTime));
+        log.debug("结束耗时：{}", (System.currentTimeMillis() - beginTime));
         return object;
     }
 
-
-    private String getKey(MethodSignature methodSignature, Object[] args){
+    /**
+     * 默认md5(类名+方法+参数)
+     *
+     * @param methodSignature
+     * @param args
+     * @return
+     */
+    private String getKey(MethodSignature methodSignature, Object[] args) {
         StringBuilder key = new StringBuilder(methodSignature.getDeclaringTypeName());
         key.append(methodSignature.getMethod().getName());
         Object[] paramValues = args;
