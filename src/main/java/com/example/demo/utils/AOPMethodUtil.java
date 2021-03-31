@@ -1,5 +1,6 @@
 package com.example.demo.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 
 import java.lang.reflect.Field;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * AOP切面获取方法实体类参数值
  */
+@Slf4j
 public class AOPMethodUtil {
     /**
      * 基础数据类型
@@ -76,7 +78,7 @@ public class AOPMethodUtil {
                     }
                 }
             } catch (IllegalArgumentException | IllegalAccessException e) {
-                e.printStackTrace();
+                log.error("error {}",e);
             }
         }
         return value;
@@ -108,7 +110,7 @@ public class AOPMethodUtil {
                     sb.append(f.getName()).append(" : ").append(f.get(object)).append(", ");
                 }
             } catch (IllegalArgumentException | IllegalAccessException e) {
-                e.printStackTrace();
+                log.error("error {}",e);
             }
         }
         sb.append("}");

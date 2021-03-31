@@ -29,7 +29,7 @@ public @interface CacheKey {
     int expireTime() default 3*60;
 
     /**
-     * 缓存过期时间单位，默认为分钟
+     * 缓存过期时间单位，默认为秒
      *
      * @return
      */
