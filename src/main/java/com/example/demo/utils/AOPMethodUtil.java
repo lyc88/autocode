@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * AOP切面获取方法实体类参数值
@@ -19,22 +20,20 @@ public class AOPMethodUtil {
             Arrays.asList("java.lang.Integer", "java.lang.Double",
                     "java.lang.Float", "java.lang.Long", "java.lang.Short",
                     "java.lang.Byte", "java.lang.Boolean", "java.lang.Char",
-                    "java.lang.String", "int", "double", "long", "short", "byte",
+                    "java.lang.String","java.math.BigDecimal", "int", "double", "long", "short", "byte",
                     "boolean", "char", "float");
 
     /**
      * 获取参数值
      *
-     * @param joinPoint
+     * @param arg
      * @param fieldName 参数字段名
      * @return
      */
-    public static Object getParamValue(JoinPoint joinPoint, String fieldName) {
+    public static Object getParamValue(Object arg, String fieldName) {
         Object value = "";
-        //获取所有的参数
-        Object[] args = joinPoint.getArgs();
-        for (Object arg : args) {
-            // 获取对象类型
+        // 获取对象类型
+        if (Objects.nonNull(arg)) {
             String typeName = arg.getClass().getTypeName();
             //1 判断是否是基础类型
             if (types.contains(typeName)) {
@@ -43,9 +42,7 @@ public class AOPMethodUtil {
                 //2 通过反射获取实体类属性
                 value = getFieldsValue(arg, fieldName);
             }
-            break;
         }
-
         return value;
     }
 

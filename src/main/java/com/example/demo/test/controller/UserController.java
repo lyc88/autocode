@@ -79,7 +79,7 @@ public class UserController{
     @ApiOperation(value = "id查询",notes = "通用结果返回对象")
     @GetMapping("user/findById")
     @CacheKey
-    public CommonResult<User> findById(@ParameterCacheKey(fieldName = "id") Integer id, HttpServletResponse response, HttpServletRequest request, MultipartFile file){
+    public CommonResult<User> findById(@ParameterCacheKey(fieldName = "id") Integer id,@ParameterCacheKey(fieldName = "name") String name ,HttpServletResponse response, HttpServletRequest request, MultipartFile file){
         User user = userService.getById(id);
         return CommonResultResponse.ok(user);
     }

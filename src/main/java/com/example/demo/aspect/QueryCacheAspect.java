@@ -66,7 +66,8 @@ public class QueryCacheAspect {
         StringBuilder realKey = new StringBuilder(cacheKey.key());
 
         // 循环所有的参数
-        for (int i = 0; i < joinPoint.getArgs().length; i++) {
+        Object[] args = joinPoint.getArgs();
+        for (int i = 0; i < args.length; i++) {
             MethodParameter methodParam = new SynthesizingMethodParameter(method, i);
             //获取参数注解
             Annotation[] parameterAnnotations = methodParam.getParameterAnnotations();
@@ -75,7 +76,7 @@ public class QueryCacheAspect {
                 if (paramAnn instanceof ParameterCacheKey) {
                     ParameterCacheKey parameterCacheKey = (ParameterCacheKey) paramAnn;
                     //取到ParameterCacheKey的标识参数的值
-                    Object fieldValue = AOPMethodUtil.getParamValue(joinPoint, parameterCacheKey.fieldName());
+                    Object fieldValue = AOPMethodUtil.getParamValue(args[i], parameterCacheKey.fieldName());
                     realKey.append(":").append(parameterCacheKey.fieldName()).append(":").append(fieldValue);
                     break;
                 }
