@@ -14,7 +14,7 @@ import java.util.Date;
 * @author ${author}
 * @date ${datetime}
 */
-public class ${table.className}QueryReqVO{
+public class ${table.className}QueryParam{
 <#list table.columns as column>
     /**
     * ${column.columnComment}

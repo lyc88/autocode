@@ -36,7 +36,8 @@ public class AutocodeTests {
     private UserService userService;
     @Test
     public void contextLoads() throws Exception {
-       // autoCode.autoCode("t_user_platform_info");
+        autoCode.autoCode("tab_user");
+
        // userService.saveU(null);
        /* DateTime endTime = DateUtil.endOfDay(new Date());
         DateTime startTime = DateUtil.beginOfDay(new Date());

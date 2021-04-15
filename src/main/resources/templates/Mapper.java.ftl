@@ -9,7 +9,6 @@ import ${package}.${moduleName}.entity.${table.className};
 * @author ${author}
 * @date ${datetime}
 */
-@Mapper
 public interface ${table.className}Mapper extends BaseMapper<${table.className}>{
 
 }

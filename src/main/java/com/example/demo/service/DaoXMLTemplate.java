@@ -19,7 +19,7 @@ import java.util.Map;
  * @author lyc
  * @date 2019/10/29.
  */
-//@Service
+@Service
 public class DaoXMLTemplate implements CodeTemplate {
 
     @Autowired
