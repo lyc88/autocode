@@ -36,9 +36,17 @@ public class AutocodeTests {
     private UserService userService;
     @Test
     public void contextLoads() throws Exception {
-        autoCode.autoCode("tab_user");
+        autoCode.autoCode("mob_push_task");
+       /* Date date = DateUtil.parse("2021-04-19", "yyyy-MM-dd");
+        System.out.println("before"+date.before(new Date()));
 
-       // userService.saveU(null);
+        System.out.println("after"+date.after(new Date()));
+
+        Date dateTime = DateUtil.offsetDay(new Date(), -3);
+
+        System.out.println(DateUtil.format(dateTime,"yyyy-MM-dd"));*/
+
+        // userService.saveU(null);
        /* DateTime endTime = DateUtil.endOfDay(new Date());
         DateTime startTime = DateUtil.beginOfDay(new Date());
         System.out.println(" time "+endTime.getTime());

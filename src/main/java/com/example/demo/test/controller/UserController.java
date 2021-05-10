@@ -58,7 +58,7 @@ public class UserController{
 
     @RequestMapping("user/import")
     public Result importUser(MultipartFile file){
-        List<Map<String, Object>> mapList = ExcelUtils.importExcel(file);
+       /* List<Map<String, Object>> mapList = ExcelUtils.importExcel(file);
         List<User> userList =  Lists.newArrayList();
         mapList.forEach(e->{
             String name = String.valueOf(e.get("姓名"));
@@ -69,7 +69,7 @@ public class UserController{
             user.setName(name);
             userList.add(user);
         });
-        userService.saveBatch(userList);
+        userService.saveBatch(userList);*/
         return Result.ok();
     }
 
