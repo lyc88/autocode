@@ -53,6 +53,12 @@ public class AutoCode {
             for (int i = 0; i < columns.size(); i++) {
                 // 赋值 属性 下划线-》驼峰 和 数据库类型-》java 类型
                 ColumnEntity columnEntity = columns.get(i);
+                String columnKey = columnEntity.getColumnKey();
+                if("PRI".equals(columnKey)){
+                    String columnName = columnEntity.getColumnName();
+                    table.setPkKey(columnName);
+                    table.setPkAttrKey((CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, columnName)));
+                }
                 // is_ 开头的去掉 如 is_open => open
                 String columnName = columnEntity.getColumnName();
                 if(columnName.startsWith("is_")){

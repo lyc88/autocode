@@ -23,4 +23,13 @@ public class TableEntity {
 	// sys_user => sysUser
 	private String attrName;
 
+	/**
+	 * 表名 主建
+	 */
+	private String pkKey;
+
+	/**
+	 * 表名 主建 属性
+	 */
+	private String pkAttrKey;
 }
