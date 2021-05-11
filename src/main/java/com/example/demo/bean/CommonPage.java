@@ -1,6 +1,7 @@
 package com.example.demo.bean;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -33,6 +34,20 @@ public class CommonPage<T> {
         result.setPageSize((int) iPage.getSize());
         result.setTotal(iPage.getTotal());
         result.setList(iPage.getRecords());
+        return result;
+    }
+
+    /**
+     * 将PageHelper分页后的list转为分页信息
+     */
+    public static <T> CommonPage<T> restPage(List<T> list) {
+        CommonPage<T> result = new CommonPage<T>();
+        PageInfo<T> pageInfo = new PageInfo<T>(list);
+        result.setTotalPage(pageInfo.getPages());
+        result.setPageNum(pageInfo.getPageNum());
+        result.setPageSize(pageInfo.getPageSize());
+        result.setTotal(pageInfo.getTotal());
+        result.setList(pageInfo.getList());
         return result;
     }
 }

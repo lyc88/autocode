@@ -1,7 +1,11 @@
 package ${serviceImplPackage};
-
+import java.util.List;
+import org.springframework.beans.BeanUtils;
+import com.github.pagehelper.PageHelper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import ${entityPackage}.${table.className};
 import ${servicePackage}.${table.className}Service;
 import ${daoPackage}.${table.className}Mapper;
@@ -22,18 +26,33 @@ public class ${table.className}ServiceImpl extends ServiceImpl<${table.className
 
 
     public CommonPage<${table.className}> page(${table.className}QueryParam ${table.attrName}QueryParam){
-        return null;
+        Integer pageNum = mobPushTaskQueryParam.getPageNum();
+        Integer pageSize = mobPushTaskQueryParam.getPageSize();
+        PageHelper.startPage(pageNum,pageSize);
+        LambdaQueryWrapper<${table.className}> lambda = new QueryWrapper<${table.className}>().lambda();
+
+        lambda.orderByDesc(${table.className}::getId);
+        List<${table.className}> ${table.attrName}List = list(lambda);
+        CommonPage<${table.className}> ${table.attrName}CommonPage = CommonPage.restPage(mobPushTaskList);
+        return mobPushTaskCommonPage;
     }
 
     public Boolean add(${table.className}AddParam ${table.attrName}AddParam){
+        ${table.className} ${table.attrName} = new ${table.className}();
+        BeanUtils.copyProperties(${table.attrName}AddParam,${table.attrName});
+        save(${table.attrName} );
         return true;
     }
 
     public Boolean update(${table.className}UpdateParam ${table.attrName}UpdateParam){
+        ${table.className} ${table.attrName} = new ${table.className}();
+        BeanUtils.copyProperties(${table.attrName}UpdateParam,${table.attrName});
+        updateById(${table.attrName});
         return true;
     }
 
     public Boolean delete(${table.className}DeleteParam ${table.attrName}DeleteParam){
+        removeById(${table.attrName}DeleteParam.getId());
         return true;
     }
 }

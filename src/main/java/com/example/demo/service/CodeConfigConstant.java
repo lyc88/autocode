@@ -102,6 +102,8 @@ public class CodeConfigConstant {
         packageMap.put("controllerPackage","com.example.demo.controller");
 
         packageMap.put("commonPackage","com.example.demo.bean");
+        // 覆盖
+        testPutPackage(packageMap);
     }
 
 }

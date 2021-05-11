@@ -1,5 +1,6 @@
 package ${entityQueryPackage};
 import javax.validation.constraints.NotNull;
+import ${commonPackage}.PageDto;
 import io.swagger.annotations.ApiModelProperty;
 <#if bigDecimal==1>
 import java.math.BigDecimal;
@@ -15,7 +16,7 @@ import lombok.Data;
 * @date ${datetime}
 */
 @Data
-public class ${table.className}QueryParam{
+public class ${table.className}QueryParam extends PageDto{
 <#list table.columns as column>
     /**
     * ${column.columnComment}
