@@ -61,8 +61,8 @@ public class DaoXMLTemplate implements CodeTemplate {
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
 
-            String controllerPackage = (String) data.get("daoXmlPackage");
-            String module = controllerPackage.replace(".", "/");
+            String daoXmlPackage = (String) data.get("daoXmlPackage");
+            String module = daoXmlPackage.replace(".", "/");
             String parentPath = codeConfigConstant.getChildXmlPath();
             parentPath = parentPath.replace(".", "/");
 

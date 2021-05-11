@@ -57,8 +57,8 @@ public class EntityUpdateTemplate implements CodeTemplate {
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
 
-            String controllerPackage = (String) data.get("entityUpdatePackage");
-            String module = controllerPackage.replace(".", "/");
+            String entityUpdatePackage = (String) data.get("entityUpdatePackage");
+            String module = entityUpdatePackage.replace(".", "/");
             String parentPath = codeConfigConstant.getChildPath();
             parentPath = parentPath.replace(".", "/");
 

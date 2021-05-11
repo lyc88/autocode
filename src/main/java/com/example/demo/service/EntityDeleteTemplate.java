@@ -57,8 +57,8 @@ public class EntityDeleteTemplate implements CodeTemplate {
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
 
-            String controllerPackage = (String) data.get("entityDeletePackage");
-            String module = controllerPackage.replace(".", "/");
+            String entityDeletePackage = (String) data.get("entityDeletePackage");
+            String module = entityDeletePackage.replace(".", "/");
             String parentPath = codeConfigConstant.getChildPath();
             parentPath = parentPath.replace(".", "/");
 

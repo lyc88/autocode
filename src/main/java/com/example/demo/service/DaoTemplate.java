@@ -60,8 +60,8 @@ public class DaoTemplate implements CodeTemplate {
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
 
-            String controllerPackage = (String) data.get("daoPackage");
-            String module = controllerPackage.replace(".", "/");
+            String daoPackage = (String) data.get("daoPackage");
+            String module = daoPackage.replace(".", "/");
             String parentPath = codeConfigConstant.getChildPath();
             parentPath = parentPath.replace(".", "/");
 

@@ -56,8 +56,8 @@ public class EntityQueryTemplate implements CodeTemplate {
             TableEntity table = (TableEntity) data.get("table");
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
-            String controllerPackage = (String) data.get("entityQueryPackage");
-            String module = controllerPackage.replace(".", "/");
+            String entityQueryPackage = (String) data.get("entityQueryPackage");
+            String module = entityQueryPackage.replace(".", "/");
             String parentPath = codeConfigConstant.getChildPath();
             parentPath = parentPath.replace(".", "/");
 

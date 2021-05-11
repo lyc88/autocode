@@ -57,8 +57,8 @@ public class EntityAddTemplate implements CodeTemplate {
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
 
-            String controllerPackage = (String) data.get("entityAddPackage");
-            String module = controllerPackage.replace(".", "/");
+            String entityAddPackage = (String) data.get("entityAddPackage");
+            String module = entityAddPackage.replace(".", "/");
             String parentPath = codeConfigConstant.getChildPath();
             parentPath = parentPath.replace(".", "/");
 
