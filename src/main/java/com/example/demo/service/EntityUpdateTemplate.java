@@ -7,7 +7,6 @@ import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.util.Assert;
@@ -30,7 +29,7 @@ public class EntityUpdateTemplate implements CodeTemplate {
     private Map data;
 
     @Autowired
-    private Constant constant;
+    private CodeConfigConstant codeConfigConstant;
 
     public void setData(Map data) {
         this.data = data;
@@ -60,10 +59,10 @@ public class EntityUpdateTemplate implements CodeTemplate {
 
             String controllerPackage = (String) data.get("entityUpdatePackage");
             String module = controllerPackage.replace(".", "/");
-            String parentPath = constant.getChildPath();
+            String parentPath = codeConfigConstant.getChildPath();
             parentPath = parentPath.replace(".", "/");
 
-            String rootPath = constant.getPath();
+            String rootPath = codeConfigConstant.getPath();
             if(StringUtils.isBlank(rootPath)){
                 rootPath = "./";
             }

@@ -35,7 +35,7 @@ public class DaoXMLTemplate implements CodeTemplate {
     private Map data;
 
     @Autowired
-    private Constant constant;
+    private CodeConfigConstant codeConfigConstant;
 
     public void setData(Map data) {
         this.data = data;
@@ -63,10 +63,10 @@ public class DaoXMLTemplate implements CodeTemplate {
 
             String controllerPackage = (String) data.get("daoXmlPackage");
             String module = controllerPackage.replace(".", "/");
-            String parentPath = constant.getChildXmlPath();
+            String parentPath = codeConfigConstant.getChildXmlPath();
             parentPath = parentPath.replace(".", "/");
 
-            String rootPath = constant.getPath();
+            String rootPath = codeConfigConstant.getPath();
             if(StringUtils.isBlank(rootPath)){
                 rootPath = "./";
             }

@@ -4,7 +4,6 @@ import com.example.demo.bean.ColumnEntity;
 import com.example.demo.bean.TableEntity;
 import com.example.demo.mapper.MysqlMapper;
 import com.google.common.base.CaseFormat;
-import freemarker.template.Template;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
@@ -28,7 +27,7 @@ public class AutoCode {
     private ApplicationContext applicationContext;
 
     @Autowired
-    private Constant constant;
+    private CodeConfigConstant codeConfigConstant;
 
     public void autoCode(String tname) {
         List<String> tableNames = new ArrayList<>();
@@ -60,7 +59,7 @@ public class AutoCode {
                     columnName = columnName.substring(columnName.indexOf("is_")+3);
                 }
                 columnEntity.setAttrName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName));
-                columnEntity.setAttrType(Constant.map.get(columnEntity.getDataType()));
+                columnEntity.setAttrType(CodeConfigConstant.map.get(columnEntity.getDataType()));
             }
             // 赋值
             table.setColumns(columns);
@@ -72,11 +71,11 @@ public class AutoCode {
 
                 Map<String, Object> data = new HashMap<>();
                 data.put("table",table);
-                data.put("swaggerEnable",constant.getSwaggerEnable());
-                data.put("author",constant.getAuthor());
+                data.put("swaggerEnable", codeConfigConstant.getSwaggerEnable());
+                data.put("author", codeConfigConstant.getAuthor());
                 data.put("datetime", DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
                 // 设置包路径
-                constant.putPackage(data);
+                codeConfigConstant.putPackage(data);
                 data.put("bigDecimal",1);
                 codeTemplate.setData(data);
                 codeTemplate.outFile();

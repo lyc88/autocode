@@ -28,7 +28,7 @@ public class ControllerTemplate implements CodeTemplate {
     Configuration configuration;
 
     @Autowired
-    private Constant constant;
+    private CodeConfigConstant codeConfigConstant;
 
     @Value("${controllerPath:/controller/}")
     private String controllerPath;
@@ -63,9 +63,9 @@ public class ControllerTemplate implements CodeTemplate {
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
             String controllerPackage = (String) data.get("controllerPackage");
             String module = controllerPackage.replace(".", "/");
-            String parentPath = constant.getChildPath();
+            String parentPath = codeConfigConstant.getChildPath();
 
-            String rootPath = constant.getPath();
+            String rootPath = codeConfigConstant.getPath();
             if(StringUtils.isBlank(rootPath)){
                 rootPath = "./";
             }
