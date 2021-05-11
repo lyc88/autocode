@@ -5,6 +5,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,9 @@ public class DaoXMLTemplate implements CodeTemplate {
 
     private Map data;
 
+    @Autowired
+    private Constant constant;
+
     public void setData(Map data) {
         this.data = data;
     }
@@ -57,7 +61,22 @@ public class DaoXMLTemplate implements CodeTemplate {
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
 
-            FileUtils.write(new File(xmlParentPath+myBatisXmlPath+table.getClassName()+"Mapper.xml"),result,"utf-8");
+            String controllerPackage = (String) data.get("daoXmlPackage");
+            String module = controllerPackage.replace(".", "/");
+            String parentPath = constant.getChildXmlPath();
+            parentPath = parentPath.replace(".", "/");
+
+            String rootPath = constant.getPath();
+            if(StringUtils.isBlank(rootPath)){
+                rootPath = "./";
+            }
+
+            String fileName = rootPath+parentPath +"/"+ module + "/" + table.getClassName() + "Mapper.xml";
+            File file = new File(fileName);
+            // 不覆盖
+            if(!file.exists()){
+                FileUtils.write(new File(fileName),result,"utf-8");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {

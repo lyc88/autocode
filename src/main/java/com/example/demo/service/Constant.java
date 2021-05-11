@@ -15,8 +15,11 @@ import java.util.Map;
 @Data
 public class Constant {
 
-    @Value("${childPath:src.main.java}")
+    @Value("${code.childPath:src.main.java}")
     private String childPath;
+
+    @Value("${code.childXmlPath}")
+    private String childXmlPath;
 
     @Value("${code.path}")
     private String path;
@@ -58,10 +61,10 @@ public class Constant {
 
 
     /**
-     * 设置包的路径
+     * 设置包的路径 相对路径
      * @param packageMap
      */
-    public void putPackage(Map packageMap){
+    public void testPutPackage(Map packageMap){
         packageMap.put("entityAddPackage","com.example.demo.test.entity");
         packageMap.put("entityDeletePackage","com.example.demo.test.entity");
         packageMap.put("entityUpdatePackage","com.example.demo.test.entity");
@@ -69,9 +72,33 @@ public class Constant {
         packageMap.put("entityPackage","com.example.demo.test.entity");
         packageMap.put("daoPackage","com.example.demo.test.mapper");
 
+        packageMap.put("daoXmlPackage","mapper.xml");
+
         packageMap.put("servicePackage","com.example.demo.test.service");
         packageMap.put("serviceImplPackage","com.example.demo.test.service.impl");
         packageMap.put("controllerPackage","com.example.demo.test.controller");
+
+        packageMap.put("commonPackage","com.example.demo.bean");
+    }
+
+
+    /**
+     * 指定路径
+     * @param packageMap
+     */
+    public void putPackage(Map packageMap){
+        packageMap.put("entityAddPackage","com.example.demo.param");
+        packageMap.put("entityDeletePackage","com.example.demo.param");
+        packageMap.put("entityUpdatePackage","com.example.demo.param");
+        packageMap.put("entityQueryPackage","com.example.demo.param");
+        packageMap.put("entityPackage","com.example.demo.entity");
+        packageMap.put("daoPackage","com.example.demo.mapper");
+
+        packageMap.put("daoXmlPackage","mapper");
+
+        packageMap.put("servicePackage","com.example.demo.service");
+        packageMap.put("serviceImplPackage","com.example.demo.service.impl");
+        packageMap.put("controllerPackage","com.example.demo.controller");
 
         packageMap.put("commonPackage","com.example.demo.bean");
     }
