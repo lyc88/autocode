@@ -1,11 +1,11 @@
-package ${package}.${moduleName}.entity;
+package ${entityQueryPackage};
 import javax.validation.constraints.NotNull;
 import io.swagger.annotations.ApiModelProperty;
 <#if bigDecimal==1>
 import java.math.BigDecimal;
 </#if>
 import java.util.Date;
-
+import lombok.Data;
 
 
 /**
@@ -14,6 +14,7 @@ import java.util.Date;
 * @author ${author}
 * @date ${datetime}
 */
+@Data
 public class ${table.className}QueryParam{
 <#list table.columns as column>
     /**

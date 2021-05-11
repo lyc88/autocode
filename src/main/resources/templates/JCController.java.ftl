@@ -1,4 +1,4 @@
-package ${package}.${moduleName}.controller;
+package ${controllerPackage};
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -7,16 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import ${package}.${moduleName}.entity.${table.className};
-import ${package}.${moduleName}.entity.${table.className}AddParam;
-import ${package}.${moduleName}.entity.${table.className}DeleteParam;
-import ${package}.${moduleName}.entity.${table.className}UpdateParam;
-import ${package}.${moduleName}.entity.${table.className}QueryParam;
-import ${package}.${moduleName}.service.${table.className}Service;
+import ${entityPackage}.${table.className};
+import ${entityAddPackage}.${table.className}AddParam;
+import ${entityDeletePackage}.${table.className}DeleteParam;
+import ${entityUpdatePackage}.${table.className}UpdateParam;
+import ${entityQueryPackage}.${table.className}QueryParam;
+
+import ${servicePackage}.${table.className}Service;
 import io.swagger.annotations.ApiOperation;
 
-import ${package}.bean.ResultVO;
-import ${package}.bean.CommonPage;
+import ${commonPackage}.ResultVO;
+import ${commonPackage}.CommonPage;
 import java.util.List;
 /**
 * ${table.tableComment}

@@ -1,13 +1,14 @@
-package ${package}.${moduleName}.service;
+package ${servicePackage};
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import ${package}.${moduleName}.entity.${table.className};
-import ${package}.${moduleName}.entity.${table.className}AddParam;
-import ${package}.${moduleName}.entity.${table.className}DeleteParam;
-import ${package}.${moduleName}.entity.${table.className}UpdateParam;
-import ${package}.${moduleName}.entity.${table.className}QueryParam;
-import ${package}.bean.CommonPage;
+import ${entityPackage}.${table.className};
+import ${entityAddPackage}.${table.className}AddParam;
+import ${entityDeletePackage}.${table.className}DeleteParam;
+import ${entityUpdatePackage}.${table.className}UpdateParam;
+import ${entityQueryPackage}.${table.className}QueryParam;
+
+import ${commonPackage}.CommonPage;
 /**
 * ${table.tableComment}
 *

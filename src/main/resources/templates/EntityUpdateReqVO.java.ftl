@@ -1,4 +1,4 @@
-package ${package}.${moduleName}.entity;
+package ${entityUpdatePackage};
 import javax.validation.constraints.NotNull;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -14,6 +14,7 @@ import lombok.Data;
 * @author ${author}
 * @date ${datetime}
 */
+@Data
 public class ${table.className}UpdateParam{
 <#list table.columns as column>
     /**

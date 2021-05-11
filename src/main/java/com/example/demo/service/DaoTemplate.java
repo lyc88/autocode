@@ -5,6 +5,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,6 @@ public class DaoTemplate implements CodeTemplate {
     @Autowired
     private Constant constant;
 
-    @Value("${mapperPath:/mapper/}")
-    private String mapperPath;
 
     private Map data;
 
@@ -62,7 +61,19 @@ public class DaoTemplate implements CodeTemplate {
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
 
-            FileUtils.write(new File(constant.getParentPath()+constant.getPackPathName()+mapperPath+table.getClassName()+"Mapper.java"),result,"utf-8");
+            String controllerPackage = (String) data.get("daoPackage");
+            String module = controllerPackage.replace(".", "/");
+            String parentPath = constant.getChildPath();
+            parentPath = parentPath.replace(".", "/");
+
+            String rootPath = constant.getPath();
+            if(StringUtils.isBlank(rootPath)){
+                rootPath = "./";
+            }
+
+            String fileName = rootPath + parentPath +"/"+ module + "/" + table.getClassName() + "Mapper.java";
+
+            FileUtils.write(new File(fileName),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {

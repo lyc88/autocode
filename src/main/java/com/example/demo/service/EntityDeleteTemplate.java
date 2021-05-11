@@ -5,6 +5,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,14 +26,8 @@ public class EntityDeleteTemplate implements CodeTemplate {
     @Autowired
     Configuration configuration;
 
-    @Value("${entityPath:/entity/}")
-    private String entityPath;
-
-    @Value("${parentPath:./src/main/java/}")
-    private String parentPath;
-
-    @Value("${packPathName:com/example/demo/test}")
-    private String packPathName;
+    @Autowired
+    private Constant constant;
 
     private Map data;
 
@@ -62,7 +57,20 @@ public class EntityDeleteTemplate implements CodeTemplate {
             TableEntity table = (TableEntity) data.get("table");
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
-            FileUtils.write(new File(parentPath+packPathName+entityPath+table.getClassName()+"DeleteParam.java"),result,"utf-8");
+
+            String controllerPackage = (String) data.get("entityDeletePackage");
+            String module = controllerPackage.replace(".", "/");
+            String parentPath = constant.getChildPath();
+            parentPath = parentPath.replace(".", "/");
+
+            String rootPath = constant.getPath();
+            if(StringUtils.isBlank(rootPath)){
+                rootPath = "./";
+            }
+
+            String fileName = rootPath+parentPath +"/"+ module + "/" + table.getClassName() + "DeleteParam.java";
+
+            FileUtils.write(new File(fileName),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {

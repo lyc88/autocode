@@ -15,11 +15,12 @@ import java.util.Map;
 @Data
 public class Constant {
 
-    @Value("${parentPath:./src/main/java/}")
-    private String parentPath;
+    @Value("${childPath:src.main.java}")
+    private String childPath;
 
-    @Value("${packPathName:com/example/demo/test}")
-    private String packPathName;
+    @Value("${code.path}")
+    private String path;
+
 
     @Value("${author:lyc}")
     private String author;
@@ -53,6 +54,26 @@ public class Constant {
         map.put("date","Date");
         map.put("datetime","Date");
         map.put("timestamp","Date");
+    }
+
+
+    /**
+     * 设置包的路径
+     * @param packageMap
+     */
+    public void putPackage(Map packageMap){
+        packageMap.put("entityAddPackage","com.example.demo.test.entity");
+        packageMap.put("entityDeletePackage","com.example.demo.test.entity");
+        packageMap.put("entityUpdatePackage","com.example.demo.test.entity");
+        packageMap.put("entityQueryPackage","com.example.demo.test.entity");
+        packageMap.put("entityPackage","com.example.demo.test.entity");
+        packageMap.put("daoPackage","com.example.demo.test.mapper");
+
+        packageMap.put("servicePackage","com.example.demo.test.service");
+        packageMap.put("serviceImplPackage","com.example.demo.test.service.impl");
+        packageMap.put("controllerPackage","com.example.demo.test.controller");
+
+        packageMap.put("commonPackage","com.example.demo.bean");
     }
 
 }

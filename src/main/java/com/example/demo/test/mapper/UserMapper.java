@@ -9,7 +9,7 @@ import com.example.demo.test.entity.User;
 * @author lyc
 * @date 2020-07-01 17:19:03
 */
-@Mapper
+
 public interface UserMapper extends BaseMapper<User>{
 
 }

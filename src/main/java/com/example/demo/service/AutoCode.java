@@ -54,7 +54,12 @@ public class AutoCode {
             for (int i = 0; i < columns.size(); i++) {
                 // 赋值 属性 下划线-》驼峰 和 数据库类型-》java 类型
                 ColumnEntity columnEntity = columns.get(i);
-                columnEntity.setAttrName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnEntity.getColumnName()));
+                // is_ 开头的去掉 如 is_open => open
+                String columnName = columnEntity.getColumnName();
+                if(columnName.startsWith("is_")){
+                    columnName = columnName.substring(columnName.indexOf("is_")+3);
+                }
+                columnEntity.setAttrName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName));
                 columnEntity.setAttrType(Constant.map.get(columnEntity.getDataType()));
             }
             // 赋值
@@ -62,16 +67,16 @@ public class AutoCode {
             Map<String,CodeTemplate> templates = applicationContext.getBeansOfType(CodeTemplate.class);
             for (Map.Entry<String,CodeTemplate> entry:templates.entrySet()){
                 CodeTemplate codeTemplate = entry.getValue();
+
+                //String packageName = constant.getPackage(codeTemplate);
+
                 Map<String, Object> data = new HashMap<>();
                 data.put("table",table);
                 data.put("swaggerEnable",constant.getSwaggerEnable());
                 data.put("author",constant.getAuthor());
                 data.put("datetime", DateFormatUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
-                String pack = constant.getPackPathName().replace("/",".");
-                String packageName = pack.substring(0,pack.lastIndexOf("."));
-                String moduleName = pack.substring(pack.lastIndexOf(".")+1);
-                data.put("package",packageName);
-                data.put("moduleName",moduleName);
+                // 设置包路径
+                constant.putPackage(data);
                 data.put("bigDecimal",1);
                 codeTemplate.setData(data);
                 codeTemplate.outFile();

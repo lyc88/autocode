@@ -1,15 +1,16 @@
-package ${package}.${moduleName}.service.impl;
+package ${serviceImplPackage};
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
-import ${package}.${moduleName}.entity.${table.className};
-import ${package}.${moduleName}.service.${table.className}Service;
-import ${package}.${moduleName}.mapper.${table.className}Mapper;
-import ${package}.${moduleName}.entity.${table.className}AddParam;
-import ${package}.${moduleName}.entity.${table.className}DeleteParam;
-import ${package}.${moduleName}.entity.${table.className}UpdateParam;
-import ${package}.${moduleName}.entity.${table.className}QueryParam;
-import ${package}.bean.CommonPage;
+import ${entityPackage}.${table.className};
+import ${servicePackage}.${table.className}Service;
+import ${daoPackage}.${table.className}Mapper;
+import ${entityAddPackage}.${table.className}AddParam;
+import ${entityDeletePackage}.${table.className}DeleteParam;
+import ${entityUpdatePackage}.${table.className}UpdateParam;
+import ${entityQueryPackage}.${table.className}QueryParam;
+
+import ${commonPackage}.CommonPage;
 /**
 * ${table.tableComment}
 *

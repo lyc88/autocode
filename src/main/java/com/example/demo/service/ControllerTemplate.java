@@ -5,6 +5,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -60,8 +61,18 @@ public class ControllerTemplate implements CodeTemplate {
             TableEntity table = (TableEntity) data.get("table");
             Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
+            String controllerPackage = (String) data.get("controllerPackage");
+            String module = controllerPackage.replace(".", "/");
+            String parentPath = constant.getChildPath();
 
-            FileUtils.write(new File(constant.getParentPath()+constant.getPackPathName()+controllerPath+table.getClassName()+"Controller.java"),result,"utf-8");
+            String rootPath = constant.getPath();
+            if(StringUtils.isBlank(rootPath)){
+                rootPath = "./";
+            }
+            parentPath = parentPath.replace(".", "/");
+            String fileName = rootPath + parentPath +"/"+ module + "/" + table.getClassName() + "Controller.java";
+
+            FileUtils.write(new File(fileName),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {
