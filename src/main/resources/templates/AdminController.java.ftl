@@ -16,7 +16,7 @@ import ${entityQueryPackage}.${table.className}QueryParam;
 import ${servicePackage}.${table.className}Service;
 import io.swagger.annotations.ApiOperation;
 
-import ${commonPackage}.CommonResult;
+import ${commonPackage}.ResultVO;
 import ${commonPackage}.CommonPage;
 import java.util.List;
 /**
@@ -38,9 +38,9 @@ public class ${table.className}Controller{
     */
     @ApiOperation("${table.tableComment}分页列表")
     @GetMapping("/page/${table.attrName}")
-    public CommonResult<CommonPage<${table.className}>> page${table.className}(${table.className}QueryParam ${table.attrName}QueryParam){
+    public ResultVO<CommonPage<${table.className}>> page${table.className}(${table.className}QueryParam ${table.attrName}QueryParam){
         CommonPage page = ${table.attrName}Service.page(${table.attrName}QueryParam);
-        return  CommonResult.success(page);
+        return  ResultVO.ok(page);
     }
 
 
@@ -50,9 +50,9 @@ public class ${table.className}Controller{
     */
     @ApiOperation(value = "id删除")
     @PostMapping("/delete/${table.className}ById")
-    public CommonResult delete(${table.className}DeleteParam  ${table.attrName}DeleteParam){
+    public ResultVO delete(${table.className}DeleteParam  ${table.attrName}DeleteParam){
         Boolean success = ${table.attrName}Service.delete(${table.attrName}DeleteParam);
-        return  CommonResult.success(success);
+        return  ResultVO.ok(success);
     }
 
 
@@ -61,9 +61,9 @@ public class ${table.className}Controller{
     */
     @ApiOperation(value = "${table.tableComment}更新")
     @PostMapping("/update/${table.className}")
-    public CommonResult update(${table.className}UpdateParam  ${table.attrName}UpdateParam){
+    public ResultVO update(${table.className}UpdateParam  ${table.attrName}UpdateParam){
         Boolean success = ${table.attrName}Service.update(${table.attrName}UpdateParam);
-        return  CommonResult.success(success);
+        return  ResultVO.ok(success);
     }
 
     /**
@@ -71,8 +71,8 @@ public class ${table.className}Controller{
     */
     @ApiOperation(value = "${table.tableComment}添加")
     @PostMapping("/add/${table.className}")
-    public CommonResult add(${table.className}AddParam  ${table.attrName}AddParam){
+    public ResultVO add(${table.className}AddParam  ${table.attrName}AddParam){
         Boolean success = ${table.attrName}Service.add(${table.attrName}AddParam);
-        return  CommonResult.success(success);
+        return  ResultVO.ok(success);
     }
 }
