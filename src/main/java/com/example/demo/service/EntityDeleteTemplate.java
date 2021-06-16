@@ -62,13 +62,13 @@ public class EntityDeleteTemplate implements CodeTemplate {
             String parentPath = codeConfigConstant.getChildPath();
             parentPath = parentPath.replace(".", "/");
 
-            String rootPath = codeConfigConstant.getPath();
+            String rootPath = codeConfigConstant.getEntityPath();
             if(StringUtils.isBlank(rootPath)){
                 rootPath = "./";
             }
 
             String fileName = rootPath+parentPath +"/"+ module + "/" + table.getClassName() + "DeleteParam.java";
-
+            if(codeConfigConstant.getWrite())
             FileUtils.write(new File(fileName),result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();

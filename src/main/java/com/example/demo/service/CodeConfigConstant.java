@@ -24,6 +24,20 @@ public class CodeConfigConstant {
     @Value("${code.path:}")
     private String path;
 
+    @Value("${code.entityPath:}")
+    private String entityPath;
+
+    @Value("${code.mapperPath:}")
+    private String mapperPath;
+
+    @Value("${code.servicePath:}")
+    private String servicePath;
+
+    @Value("${code.controllerPath:}")
+    private String controllerPath;
+
+    @Value("${code.write:false}")
+    private Boolean write;
 
     @Value("${author:lyc}")
     private String author;
@@ -87,23 +101,23 @@ public class CodeConfigConstant {
      * @param packageMap
      */
     public void putPackage(Map packageMap){
-        packageMap.put("entityAddPackage","com.example.demo.param");
-        packageMap.put("entityDeletePackage","com.example.demo.param");
-        packageMap.put("entityUpdatePackage","com.example.demo.param");
-        packageMap.put("entityQueryPackage","com.example.demo.param");
-        packageMap.put("entityPackage","com.example.demo.entity");
+        packageMap.put("entityAddPackage","com.vodsen.entity.param");
+        packageMap.put("entityDeletePackage","com.vodsen.entity.param");
+        packageMap.put("entityUpdatePackage","com.vodsen.entity.param");
+        packageMap.put("entityQueryPackage","com.vodsen.entity.param");
+        packageMap.put("entityPackage","com.vodsen.entity.po");
 
-        packageMap.put("daoPackage","com.example.demo.mapper");
+        packageMap.put("daoPackage","com.vodsen.mapper");
         packageMap.put("daoXmlPackage","mapper");
 
-        packageMap.put("servicePackage","com.example.demo.service");
-        packageMap.put("serviceImplPackage","com.example.demo.service.impl");
+        packageMap.put("servicePackage","com.vodsen.service");
+        packageMap.put("serviceImplPackage","com.vodsen.service.impl");
 
-        packageMap.put("controllerPackage","com.example.demo.controller");
+        packageMap.put("controllerPackage","com.vodsen.app.controller");
 
-        packageMap.put("commonPackage","com.example.demo.bean");
+        packageMap.put("commonPackage","com.vodsen.common.bean");
         // 覆盖
-        testPutPackage(packageMap);
+        //testPutPackage(packageMap);
     }
 
 }

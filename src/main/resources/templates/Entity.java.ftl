@@ -2,6 +2,7 @@ package ${entityPackage};
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import javax.validation.constraints.NotNull;
 <#if swaggerEnable==true>
 import io.swagger.annotations.ApiModelProperty;
@@ -41,8 +42,17 @@ public class ${table.className}{
         <#if column.ableNull=="NO">
     @NotNull(message = "${column.columnComment}不能为空")
         </#if>
+         <#if column.columnName=="update_time">
+    @TableField(value="${column.columnName}",fill = FieldFill.INSERT_UPDATE)
+    private ${column.attrType} ${column.attrName};
+
+        <#elseif column.columnName=="create_time">
+    @TableField(value="${column.columnName}",fill = FieldFill.INSERT)
+    private ${column.attrType} ${column.attrName};
+        <#else>
     @TableField("${column.columnName}")
     private ${column.attrType} ${column.attrName};
+        </#if>
     </#if>
 
 </#list>

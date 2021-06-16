@@ -66,7 +66,7 @@ public class DaoXMLTemplate implements CodeTemplate {
             String parentPath = codeConfigConstant.getChildXmlPath();
             parentPath = parentPath.replace(".", "/");
 
-            String rootPath = codeConfigConstant.getPath();
+            String rootPath = codeConfigConstant.getMapperPath();
             if(StringUtils.isBlank(rootPath)){
                 rootPath = "./";
             }

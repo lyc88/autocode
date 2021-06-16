@@ -32,8 +32,8 @@ public class ${table.className}ServiceImpl extends ServiceImpl<${table.className
         LambdaQueryWrapper<${table.className}> lambda = new QueryWrapper<${table.className}>().lambda();
         queryCondition(lambda,${table.attrName}QueryParam);
         List<${table.className}> ${table.attrName}List = list(lambda);
-        CommonPage<${table.className}> ${table.attrName}CommonPage = CommonPage.restPage(mobPushTaskList);
-        return mobPushTaskCommonPage;
+        CommonPage<${table.className}> ${table.attrName}CommonPage = CommonPage.restPage(${table.attrName}List);
+        return ${table.attrName}CommonPage;
     }
 
     private void queryCondition(LambdaQueryWrapper<${table.className}> lambda,${table.className}QueryParam ${table.attrName}QueryParam){
@@ -44,7 +44,7 @@ public class ${table.className}ServiceImpl extends ServiceImpl<${table.className
     public Boolean add(${table.className}AddParam ${table.attrName}AddParam){
         ${table.className} ${table.attrName} = new ${table.className}();
         BeanUtils.copyProperties(${table.attrName}AddParam,${table.attrName});
-        save(${table.attrName} );
+        save(${table.attrName});
         return true;
     }
 

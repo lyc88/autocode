@@ -65,14 +65,15 @@ public class ControllerTemplate implements CodeTemplate {
             String module = controllerPackage.replace(".", "/");
             String parentPath = codeConfigConstant.getChildPath();
 
-            String rootPath = codeConfigConstant.getPath();
+            String rootPath = codeConfigConstant.getControllerPath();
             if(StringUtils.isBlank(rootPath)){
                 rootPath = "./";
             }
             parentPath = parentPath.replace(".", "/");
             String fileName = rootPath + parentPath +"/"+ module + "/" + table.getClassName() + "Controller.java";
-
-            FileUtils.write(new File(fileName),result,"utf-8");
+            File file = new File(fileName);
+            if(codeConfigConstant.getWrite())
+            FileUtils.write(file,result,"utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {
