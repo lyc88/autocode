@@ -36,7 +36,7 @@ public class AutocodeTests {
     private UserService userService;
     @Test
     public void contextLoads() throws Exception {
-        autoCode.autoCode("base_area");
+        autoCode.autoCode("base_email_log");
        /* Date date = DateUtil.parse("2021-04-19", "yyyy-MM-dd");
         System.out.println("before"+date.before(new Date()));
 
