@@ -72,7 +72,14 @@ public class ControllerAdminTemplate implements CodeTemplate {
             parentPath = parentPath.replace(".", "/");
             String fileName = rootPath + parentPath +"/"+ module + "/" + table.getClassName() + "Controller.java";
 
-            FileUtils.write(new File(fileName),result,"utf-8");
+            File file = new File(fileName);
+            // 不覆盖
+            if(file.exists() && codeConfigConstant.getWrite()){
+                FileUtils.write(new File(fileName),result,"utf-8");
+            }
+            if(!file.exists()){
+                FileUtils.write(new File(fileName),result,"utf-8");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {
