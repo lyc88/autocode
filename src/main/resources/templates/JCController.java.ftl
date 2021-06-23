@@ -35,7 +35,7 @@ public class ${table.className}Controller{
     *  ${table.tableComment} 分页查询
     */
     @ApiOperation("${table.tableComment}分页列表")
-    @GetMapping("api/v1/page/${table.attrName}")
+    @GetMapping("api/v1/${table.attrName}/page")
     public CommonResult<CommonPage<${table.className}>> page${table.className}(${table.className}QueryParam ${table.attrName}QueryParam){
         CommonPage page = ${table.attrName}Service.page(${table.attrName}QueryParam);
         return  CommonResult.success(page);
@@ -47,7 +47,7 @@ public class ${table.className}Controller{
     *  id删除
     */
     @ApiOperation(value = "id删除")
-    @PostMapping("api/v1/delete/${table.className}ById")
+    @PostMapping("api/v1/${table.attrName}ById/delete")
     public CommonResult delete(${table.className}DeleteParam  ${table.attrName}DeleteParam){
         Boolean success = ${table.attrName}Service.delete(${table.attrName}DeleteParam);
         return  CommonResult.success(success);
@@ -58,7 +58,7 @@ public class ${table.className}Controller{
     *  ${table.tableComment}更新
     */
     @ApiOperation(value = "${table.tableComment}更新")
-    @PostMapping("api/v1/update/${table.className}")
+    @PostMapping("api/v1/${table.attrName}/update")
     public CommonResult update(${table.className}UpdateParam  ${table.attrName}UpdateParam){
         Boolean success = ${table.attrName}Service.update(${table.attrName}UpdateParam);
         return  CommonResult.success(success);
@@ -68,7 +68,7 @@ public class ${table.className}Controller{
     *  ${table.tableComment}添加
     */
     @ApiOperation(value = "${table.tableComment}添加")
-    @PostMapping("api/v1/add/${table.className}")
+    @PostMapping("api/v1/${table.attrName}/add")
     public CommonResult add(${table.className}AddParam  ${table.attrName}AddParam){
         Boolean success = ${table.attrName}Service.add(${table.attrName}AddParam);
         return  CommonResult.success(success);
