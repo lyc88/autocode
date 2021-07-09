@@ -114,7 +114,7 @@ public class CodeConfigConstant {
         packageMap.put("serviceImplPackage","com.vodsen.service.impl");
 
         packageMap.put("controllerPackage","com.vodsen.app.controller");
-        packageMap.put("controllerPackage","com.vodsen.web.controller");
+        //packageMap.put("controllerPackage","com.vodsen.web.controller");
 
 
         packageMap.put("commonPackage","com.vodsen.common.bean");
