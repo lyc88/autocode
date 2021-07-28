@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.transaction.annotation.Transactional;
 import ${entityPackage}.${table.className};
 import ${servicePackage}.${table.className}Service;
 import ${daoPackage}.${table.className}Mapper;
@@ -24,7 +25,7 @@ import ${commonPackage}.CommonPage;
 @Service
 public class ${table.className}ServiceImpl extends ServiceImpl<${table.className}Mapper,${table.className}> implements  ${table.className}Service{
 
-
+    @Override
     public CommonPage<${table.className}> page(${table.className}QueryParam ${table.attrName}QueryParam){
         Integer pageNum = ${table.attrName}QueryParam.getPageNum();
         Integer pageSize = ${table.attrName}QueryParam.getPageSize();
@@ -41,6 +42,8 @@ public class ${table.className}ServiceImpl extends ServiceImpl<${table.className
         lambda.orderByDesc(${table.className}::get${table.pkAttrKey});
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public Boolean add(${table.className}AddParam ${table.attrName}AddParam){
         ${table.className} ${table.attrName} = new ${table.className}();
         BeanUtils.copyProperties(${table.attrName}AddParam,${table.attrName});
@@ -48,6 +51,8 @@ public class ${table.className}ServiceImpl extends ServiceImpl<${table.className
         return true;
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public Boolean update(${table.className}UpdateParam ${table.attrName}UpdateParam){
         ${table.className} ${table.attrName} = new ${table.className}();
         BeanUtils.copyProperties(${table.attrName}UpdateParam,${table.attrName});
@@ -55,6 +60,8 @@ public class ${table.className}ServiceImpl extends ServiceImpl<${table.className
         return true;
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public Boolean delete(${table.className}DeleteParam ${table.attrName}DeleteParam){
         removeById(${table.attrName}DeleteParam.getId());
         return true;
