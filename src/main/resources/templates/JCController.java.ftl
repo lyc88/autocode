@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import ${entityPackage}.${table.className};
 import ${entityAddPackage}.${table.className}AddParam;
 import ${entityDeletePackage}.${table.className}DeleteParam;
@@ -48,7 +49,7 @@ public class ${table.className}Controller{
     */
     @ApiOperation(value = "id删除")
     @PostMapping("api/v1/${table.attrName}ById/delete")
-    public CommonResult delete(${table.className}DeleteParam  ${table.attrName}DeleteParam){
+    public CommonResult delete(@Validated ${table.className}DeleteParam  ${table.attrName}DeleteParam){
         Boolean success = ${table.attrName}Service.delete(${table.attrName}DeleteParam);
         return  CommonResult.success(success);
     }
@@ -59,7 +60,7 @@ public class ${table.className}Controller{
     */
     @ApiOperation(value = "${table.tableComment}更新")
     @PostMapping("api/v1/${table.attrName}/update")
-    public CommonResult update(${table.className}UpdateParam  ${table.attrName}UpdateParam){
+    public CommonResult update(@Validated ${table.className}UpdateParam  ${table.attrName}UpdateParam){
         Boolean success = ${table.attrName}Service.update(${table.attrName}UpdateParam);
         return  CommonResult.success(success);
     }
@@ -69,7 +70,7 @@ public class ${table.className}Controller{
     */
     @ApiOperation(value = "${table.tableComment}添加")
     @PostMapping("api/v1/${table.attrName}/add")
-    public CommonResult add(${table.className}AddParam  ${table.attrName}AddParam){
+    public CommonResult add(@Validated ${table.className}AddParam  ${table.attrName}AddParam){
         Boolean success = ${table.attrName}Service.add(${table.attrName}AddParam);
         return  CommonResult.success(success);
     }

@@ -115,7 +115,7 @@ public class CodeConfigConstant {
 
         packageMap.put("controllerPackage","com.vodsen.app.controller");
         //packageMap.put("controllerPackage","com.vodsen.web.controller");
-
+        packageMap.put("controllerPackage","com.vodsen.miniprogram");
 
         packageMap.put("commonPackage","com.vodsen.common.bean");
         // 覆盖
