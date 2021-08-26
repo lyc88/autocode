@@ -1,9 +1,11 @@
 package com.example.demo;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import cn.hutool.json.JSONUtil;
 import com.example.demo.test.entity.Link;
 import com.example.demo.test.service.LinkService;
 import com.google.common.collect.Lists;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,10 +17,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.CollectionUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**
@@ -97,5 +102,76 @@ public class JsoupCountry {
         if(!CollectionUtils.isEmpty(next)){
             getDoc(next.get(0).attr("href").toString());
         }
+    }
+
+
+    @Test
+    public  void getCountry() throws IOException {
+        List<String> readLines = FileUtils.readLines(new File("d:\\国家地区区号.txt"));
+        List<String> list = readLines.stream()
+                .map((e -> e.replace(",", "").replace("\"","").trim())).collect(Collectors.toList());
+
+        list.forEach(e-> {
+                    String[] split = e.split("-");
+                    String s = split[0];
+                    String s1 = split[1];
+                    String s2 = split[2];
+                    char c = s.charAt(0);
+                });
+
+        List<String> ar = Lists.newArrayList();
+        Document doc = Jsoup.connect("https://www.iamwawa.cn/shicha.html")
+                .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36")
+                .get();
+        Elements elements = doc.select(".content-body");
+        Element first = elements.first();
+        Elements aList = first.select("table");
+        AtomicInteger i= new AtomicInteger(1);
+        aList.forEach(e -> {
+
+            Elements thElements = e.select("th");
+            thElements.forEach(td->{
+                System.out.print(td.text()+" ");
+            });
+
+            e.select("tr").forEach(element -> {
+                Elements tdElements = element.select("td");
+                Iterator<Element> iterator = tdElements.iterator();
+                String str = "";
+                while (iterator.hasNext()){
+                    Element next = iterator.next();
+                    str += next.text()+"-" ;
+                }
+                ar.add(str);
+                i.getAndIncrement();
+            });
+            System.out.println(i);
+        });
+        HashMap<String,String> map = new HashMap<>();
+        List<String> sList = Lists.newArrayList();
+        ar.forEach(e-> {
+            if(StringUtils.isNotBlank(e)){
+                String[] split = e.split("-");
+                String s = split[0];
+                String s1 = split[1];
+                String s2 = split[2];
+                String s3 = split[3];
+                char c = s.charAt(0);
+                String str = s + "-"+s1+"-" + s3;
+                sList.add(str);
+                map.put(str,s2);
+            }
+        });
+
+        sList.forEach(str->{
+            if(!list.contains(str)){
+                list.add(str);
+            }else {
+                System.out.println(str);
+            }
+        });
+
+        FileUtils.write(new File("d:\\完整的世界各国中英文名字及区号.txt"), JSONUtil.toJsonPrettyStr(list),"utf-8");
+        System.out.println("完成");
     }
 }

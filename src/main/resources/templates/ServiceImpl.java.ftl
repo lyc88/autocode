@@ -63,7 +63,7 @@ public class ${table.className}ServiceImpl extends ServiceImpl<${table.className
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean delete(${table.className}DeleteParam ${table.attrName}DeleteParam){
-        removeById(${table.attrName}DeleteParam.getId());
+        removeById(${table.attrName}DeleteParam.get${table.pkAttrKey}());
         return true;
     }
 }
