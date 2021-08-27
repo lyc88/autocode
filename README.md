@@ -10,68 +10,103 @@
 
 改一下数据库连接,直接运行测试类就行 生成代码 在 test 目录下面 很容易就看到了。 例子：
 ```
-@Api(value = "用户",tags={"用户操作接口"})
+@Api(tags={"用户表操作接口"})
 @RestController
-public class UserController{
+public class UmsUserController{
 
     @Autowired
-    private UserService userService;
+    private UmsUserService umsUserService;
 
     /**
-    * 分页查询 size 页大小 current 当前页
+    *  用户表 分页查询
     */
-    @ApiOperation(value = "分页",notes = "通用结果返回对象")
-    @ApiImplicitParams({
-    @ApiImplicitParam(name = "size", value = "页大小 默认10", defaultValue = "10"),
-    @ApiImplicitParam(name = "current", value = "当前页 默认1", defaultValue = "1")
-    })
-    @GetMapping("user/page")
-    public CommonResult<User> page(@RequestParam(name = "size",defaultValue = "10") Integer size,
-                                                @RequestParam(name = "current",defaultValue = "1") Integer current){
-        Page page = new Page(current,size);
-        IPage result = userService.page(page);
-        List<User>  userList = result.getRecords();
-        return  CommonResultResponse.ok(userList);
+    @ApiOperation("用户表分页列表")
+    @GetMapping("api/v1/umsUser/page")
+    public CommonResult<CommonPage<UmsUser>> pageUmsUser(UmsUserQueryParam umsUserQueryParam){
+        CommonPage page = umsUserService.page(umsUserQueryParam);
+        return  CommonResult.success(page);
     }
 
-    /**
-    * 列表
-    */
-    @ApiOperation(value = "列表",notes = "通用结果返回对象")
-    @GetMapping("user/list")
-    public CommonResult<User> list(){
-        List<User> userList = userService.list(new QueryWrapper<User>());
-        return  CommonResultResponse.ok(userList);
-    }
+
 
     /**
     *  id删除
     */
-    @ApiOperation(value = "id删除",notes = "通用结果返回对象")
-    @PostMapping("user/delete")
-    public CommonResult<Boolean> delete(Integer id){
-        Boolean success = userService.removeById(id);
-        return CommonResultResponse.ok(success);
+    @ApiOperation(value = "id删除")
+    @PostMapping("api/v1/umsUserById/delete")
+    public CommonResult delete(@Validated UmsUserDeleteParam  umsUserDeleteParam){
+        Boolean success = umsUserService.delete(umsUserDeleteParam);
+        return  CommonResult.success(success);
+    }
+
+
+    /**
+    *  用户表更新
+    */
+    @ApiOperation(value = "用户表更新")
+    @PostMapping("api/v1/umsUser/update")
+    public CommonResult update(@Validated UmsUserUpdateParam  umsUserUpdateParam){
+        Boolean success = umsUserService.update(umsUserUpdateParam);
+        return  CommonResult.success(success);
     }
 
     /**
-    *  id查询
+    *  用户表添加
     */
-    @ApiOperation(value = "id查询",notes = "通用结果返回对象")
-    @GetMapping("user/findById")
-    public CommonResult<User> findById(Integer id){
-        User user = userService.getById(id);
-        return CommonResultResponse.ok(user);
+    @ApiOperation(value = "用户表添加")
+    @PostMapping("api/v1/umsUser/add")
+    public CommonResult add(@Validated UmsUserAddParam  umsUserAddParam){
+        Boolean success = umsUserService.add(umsUserAddParam);
+        return  CommonResult.success(success);
+    }
+}
+
+
+
+
+@Service
+public class UmsUserServiceImpl extends ServiceImpl<UmsUserMapper,UmsUser> implements  UmsUserService{
+
+    @Override
+    public CommonPage<UmsUser> page(UmsUserQueryParam umsUserQueryParam){
+        Integer pageNum = umsUserQueryParam.getPageNum();
+        Integer pageSize = umsUserQueryParam.getPageSize();
+        PageHelper.startPage(pageNum,pageSize);
+        LambdaQueryWrapper<UmsUser> lambda = new QueryWrapper<UmsUser>().lambda();
+        queryCondition(lambda,umsUserQueryParam);
+        List<UmsUser> umsUserList = list(lambda);
+        CommonPage<UmsUser> umsUserCommonPage = CommonPage.restPage(umsUserList);
+        return umsUserCommonPage;
     }
 
-     /**
-      *  新增
-      */
-     @ApiOperation(value = "新增",notes = "通用结果返回对象")
-     @PostMapping("user/add")
-     public CommonResult<Boolean> add(User user){
-        Boolean success = userService.save(user);
-        return CommonResultResponse.ok(success);
-     }
+    private void queryCondition(LambdaQueryWrapper<UmsUser> lambda,UmsUserQueryParam umsUserQueryParam){
+
+        lambda.orderByDesc(UmsUser::getUserId);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean add(UmsUserAddParam umsUserAddParam){
+        UmsUser umsUser = new UmsUser();
+        BeanUtils.copyProperties(umsUserAddParam,umsUser);
+        save(umsUser);
+        return true;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean update(UmsUserUpdateParam umsUserUpdateParam){
+        UmsUser umsUser = new UmsUser();
+        BeanUtils.copyProperties(umsUserUpdateParam,umsUser);
+        updateById(umsUser);
+        return true;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean delete(UmsUserDeleteParam umsUserDeleteParam){
+        removeById(umsUserDeleteParam.getUserId());
+        return true;
+    }
 }
 ```
