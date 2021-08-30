@@ -43,7 +43,7 @@ public class AutocodeTests {
     @Test
     public void contextLoads() throws Exception {
 
-        autoCode.autoCode("ums_user");
+        autoCode.autoCode("user_city_weather");
        /* Date date = DateUtil.parse("2021-04-19", "yyyy-MM-dd");
         System.out.println("before"+date.before(new Date()));
 
