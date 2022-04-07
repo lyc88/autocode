@@ -40,6 +40,7 @@ public class SysUserController{
     public CommonResult<CommonPage<SysUser>> pageSysUser(SysUserQueryParam sysUserQueryParam){
         CommonPage page = sysUserService.page(sysUserQueryParam);
         return  CommonResult.success(page);
+
     }
 
 
