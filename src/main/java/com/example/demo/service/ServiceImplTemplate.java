@@ -55,7 +55,6 @@ public class ServiceImplTemplate implements CodeTemplate {
     public void outFile() {
         try {
             TableEntity table = (TableEntity) data.get("table");
-            Assert.notNull(table,"表结构不能为空");
             String result = FreeMarkerTemplateUtils.processTemplateIntoString(getTemplate(),data);
 
             String serviceImplPackage = (String) data.get("serviceImplPackage");

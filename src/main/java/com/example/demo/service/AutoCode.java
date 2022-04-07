@@ -59,11 +59,7 @@ public class AutoCode {
                     table.setPkKey(columnName);
                     table.setPkAttrKey((CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, columnName)));
                 }
-                // is_ 开头的去掉 如 is_open => open 去掉后导致mysqlPlus 字段 is_delete 会改写 delete 关键字
                 String columnName = columnEntity.getColumnName();
-               /* if(columnName.startsWith("is_")){
-                    columnName = columnName.substring(columnName.indexOf("is_")+3);
-                }*/
                 columnEntity.setAttrName(CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName));
                 columnEntity.setAttrType(CodeConfigConstant.map.get(columnEntity.getDataType()));
             }
@@ -72,9 +68,6 @@ public class AutoCode {
             Map<String,CodeTemplate> templates = applicationContext.getBeansOfType(CodeTemplate.class);
             for (Map.Entry<String,CodeTemplate> entry:templates.entrySet()){
                 CodeTemplate codeTemplate = entry.getValue();
-
-                //String packageName = constant.getPackage(codeTemplate);
-
                 Map<String, Object> data = new HashMap<>();
                 data.put("table",table);
                 data.put("swaggerEnable", codeConfigConstant.getSwaggerEnable());

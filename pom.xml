@@ -211,6 +211,19 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 
+
+		</dependency>
+
+		<!--<dependency>
+			<groupId>com.github.shijingsh</groupId>
+			<artifactId>knife4j-spring-boot-starter</artifactId>
+			<version>3.0.5</version>
+		</dependency>-->
+
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>knife4j-spring-boot-starter</artifactId>
+			<version>2.0.7</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.spring4all/swagger-spring-boot-starter -->
@@ -221,11 +234,11 @@
 		</dependency>-->
 
 		<!--美化swagger-->
-		<dependency>
+	<!--	<dependency>
 			<groupId>com.github.xiaoymin</groupId>
 			<artifactId>swagger-bootstrap-ui</artifactId>
 			<version>1.9.5</version>
-		</dependency>
+		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
 		<dependency>

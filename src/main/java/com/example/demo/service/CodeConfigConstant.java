@@ -119,7 +119,7 @@ public class CodeConfigConstant {
 
         packageMap.put("commonPackage","com.vodsen.common.bean");
         // 覆盖
-        //testPutPackage(packageMap);
+        testPutPackage(packageMap);
     }
 
 }

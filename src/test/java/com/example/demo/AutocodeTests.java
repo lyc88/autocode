@@ -7,7 +7,6 @@ import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.example.demo.service.AutoCode;
 import com.example.demo.service.MysqlAutoService;
-import com.example.demo.test.service.UserService;
 import com.google.common.collect.Lists;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
@@ -38,12 +37,11 @@ public class AutocodeTests {
     private MysqlAutoService mysqlAutoService;
     @Autowired
     private AutoCode autoCode;
-    @Autowired
-    private UserService userService;
+
     @Test
     public void contextLoads() throws Exception {
 
-        autoCode.autoCode("user_city_weather");
+        autoCode.autoCode("sys_user");
        /* Date date = DateUtil.parse("2021-04-19", "yyyy-MM-dd");
         System.out.println("before"+date.before(new Date()));
 

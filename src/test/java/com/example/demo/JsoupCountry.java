@@ -1,3 +1,4 @@
+/*
 package com.example.demo;
 
 import cn.hutool.json.JSONUtil;
@@ -26,12 +27,14 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+*/
 /**
  *  文档
  *  https://www.open-open.com/jsoup/selector-syntax.htm
  *
  *  utf8mb4不生效的问题 https://blog.csdn.net/wjf8882300/article/details/93711434
- */
+ *//*
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -175,3 +178,4 @@ public class JsoupCountry {
         System.out.println("完成");
     }
 }
+*/

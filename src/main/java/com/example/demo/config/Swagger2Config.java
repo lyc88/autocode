@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
-import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-@EnableSwaggerBootstrapUI
+@EnableKnife4j
 public class Swagger2Config {
 
     @Value(value = "${swagger.enable:true}")
